@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://br4ve8o26nse1"]
+
+[ext_resource type="PackedScene" uid="uid://ci6dwsyamwp4v" path="res://scenes/base_part.tscn" id="1_0q20k"]
+[ext_resource type="Script" uid="uid://bqdi8qt5dmmpq" path="res://scripts/drag_controller.gd" id="2_l2v5r"]
+[ext_resource type="PackedScene" uid="uid://cq522q5rssv3t" path="res://scenes/drag_joint.tscn" id="3_6rhck"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0q20k"]
+size = Vector2(1369, 92.5)
+
+[node name="HeroBuilder" type="Node2D" unique_id=408255002]
+
+[node name="BasePart" parent="." unique_id=923943070 instance=ExtResource("1_0q20k")]
+position = Vector2(256, 189)
+script = null
+
+[node name="BasePart2" parent="." unique_id=677537734 instance=ExtResource("1_0q20k")]
+position = Vector2(427, -48)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1690625894]
+collision_layer = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1341683994]
+position = Vector2(517, 613)
+shape = SubResource("RectangleShape2D_0q20k")
+
+[node name="DragController" type="Node2D" parent="." unique_id=985302218 node_paths=PackedStringArray("parts")]
+script = ExtResource("2_l2v5r")
+parts = [NodePath("../DragJoint")]
+
+[node name="DragJoint" parent="." unique_id=518220694 instance=ExtResource("3_6rhck")]
+position = Vector2(164, 140)
+node_b = NodePath("../BasePart")

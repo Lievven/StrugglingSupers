@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://cq522q5rssv3t"]
+
+[ext_resource type="Script" uid="uid://cmogov5a7q4jx" path="res://scripts/drag_joint.gd" id="1_tjfb1"]
+[ext_resource type="Texture2D" uid="uid://bbbughheh03i2" path="res://assets/joint.png" id="2_ohtor"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6rhck"]
+radius = 32.38827
+
+[node name="DragJoint" type="PinJoint2D" unique_id=518220694]
+node_a = NodePath("CharacterBody2D")
+script = ExtResource("1_tjfb1")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=1686936239]
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D" unique_id=2114061428]
+texture = ExtResource("2_ohtor")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=1075801273]
+shape = SubResource("CircleShape2D_6rhck")
+
+[connection signal="input_event" from="CharacterBody2D" to="." method="_on_input_event"]
+[connection signal="mouse_entered" from="CharacterBody2D" to="." method="_on_character_body_2d_mouse_entered"]

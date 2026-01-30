@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://ci6dwsyamwp4v"]
+
+[ext_resource type="Script" uid="uid://dhwrv6bnbx2uq" path="res://scripts/base_part.gd" id="1_3xikt"]
+[ext_resource type="Texture2D" uid="uid://b72nnxkan0fhw" path="res://assets/shirt.png" id="1_c3760"]
+
+[node name="BasePart" type="RigidBody2D" unique_id=923943070]
+input_pickable = true
+script = ExtResource("1_3xikt")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=411443742]
+texture = ExtResource("1_c3760")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1078439702]
+polygon = PackedVector2Array(-37, -123, 0, -89, 35, -125, 126, -52, 91, -19, 66, -45, 66, 124, -69, 124, -67, -44, -92, -18, -124, -54)
