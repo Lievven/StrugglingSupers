@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://ci6dwsyamwp4v"]
+
+[ext_resource type="Script" uid="uid://dhwrv6bnbx2uq" path="res://scripts/base_part.gd" id="1_a7mix"]
+[ext_resource type="Texture2D" uid="uid://ccvixbmohreqx" path="res://assets/body_1.png" id="2_bvwml"]
+
+[node name="BasePart" type="RigidBody2D" unique_id=923943070]
+collision_layer = 2
+input_pickable = true
+script = ExtResource("1_a7mix")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=411443742]
+texture = ExtResource("2_bvwml")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1078439702]
+polygon = PackedVector2Array(-43, -40, 44, -41, 22, 40, -17, 41)

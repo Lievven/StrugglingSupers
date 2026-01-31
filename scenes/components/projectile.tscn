@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://c2mbd5y2eyov5"]
+
+[ext_resource type="Texture2D" uid="uid://bbbughheh03i2" path="res://assets/joint.png" id="1_ae8u7"]
+[ext_resource type="Script" uid="uid://fx75ltb27bis" path="res://scripts/projectile.gd" id="1_im1d0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ae8u7"]
+
+[node name="Projectile" type="Area2D" unique_id=7886697]
+script = ExtResource("1_im1d0")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1029828692]
+texture = ExtResource("1_ae8u7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1839375071]
+shape = SubResource("CircleShape2D_ae8u7")

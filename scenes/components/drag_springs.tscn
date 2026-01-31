@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://b8vwwp55x6wv7"]
+
+[ext_resource type="Script" uid="uid://brcnvamxtpirw" path="res://scripts/drag_springs.gd" id="1_7ujbg"]
+[ext_resource type="Texture2D" uid="uid://bbbughheh03i2" path="res://assets/joint.png" id="2_7ujbg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tjfb1"]
+radius = 13.0
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1686936239]
+z_index = 10
+collision_layer = 128
+collision_mask = 0
+input_pickable = true
+script = ExtResource("1_7ujbg")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2114061428]
+texture = ExtResource("2_7ujbg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1549910529]
+shape = SubResource("CircleShape2D_tjfb1")
+
+[node name="Spring1" type="DampedSpringJoint2D" parent="." unique_id=1362944276]
+position = Vector2(-15, -20)
+rotation = 0.6981317
+node_b = NodePath("..")
+length = 30.0
+rest_length = 20.0
+stiffness = 64.0
+
+[node name="Spring2" type="DampedSpringJoint2D" parent="." unique_id=2104956050]
+position = Vector2(15, -20)
+rotation = -0.6981317
+node_b = NodePath("..")
+length = 30.0
+rest_length = 20.0
+stiffness = 64.0
+
+[node name="Spring3" type="DampedSpringJoint2D" parent="." unique_id=1765386993]
+position = Vector2(0, -35)
+node_b = NodePath("..")
+length = 40.0
+rest_length = 35.0
+stiffness = 64.0
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

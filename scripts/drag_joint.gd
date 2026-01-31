@@ -7,6 +7,10 @@ signal drag_and_drop
 @onready var drag_handle = $CharacterBody2D
 var on_handle = true
 
+
+func _ready() -> void:
+	main_ui.connect("start_battle", start_battle)
+
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	self.emit_signal("drag_and_drop", event, self)
 
@@ -16,10 +20,14 @@ func swap_target():
 		node_a = base_target.get_path()
 		on_handle = false
 	else:
+		$CharacterBody2D.position = position
 		node_a = drag_handle.get_path()
 		on_handle = true
 
 
 func swap_limb(limb: CollisionObject2D):
 	node_b = limb.get_path()
-	
+
+
+func start_battle():
+	swap_target()

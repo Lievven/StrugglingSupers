@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://xvt44y57romm"]
+
+[ext_resource type="Script" uid="uid://dhwrv6bnbx2uq" path="res://scripts/base_part.gd" id="1_6myfq"]
+[ext_resource type="Texture2D" uid="uid://xsxny1wx678o" path="res://assets/upper_arm_1.png" id="2_6myfq"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6myfq"]
+radius = 12.0
+height = 62.0
+
+[node name="BaseLimb" type="RigidBody2D" unique_id=923943070]
+z_index = -1
+collision_layer = 4
+input_pickable = true
+script = ExtResource("1_6myfq")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=411443742]
+rotation = -0.104185805
+texture = ExtResource("2_6myfq")
+
+[node name="CollisionPolygon2D" type="CollisionShape2D" parent="." unique_id=465232646]
+shape = SubResource("CapsuleShape2D_6myfq")

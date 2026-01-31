@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://b8erbv6tgi7rs"]
+
+[sub_resource type="GDScript" id="GDScript_17waf"]
+resource_name = "impulse_component"
+script/source = "extends Marker2D
+
+@export var impulse_force: float = 500.0
+@export var impulse_delay: float = 0.5
+
+@onready var parent = get_parent()
+
+func _ready() -> void:
+	main_ui.connect(\"start_battle\", start_battle)
+	
+func start_battle():
+	$Timer.start(impulse_delay)
+
+func _on_timer_timeout() -> void:
+	if parent is RigidBody2D:
+		var impulse = Vector2(0, -1).rotated(global_rotation) * impulse_force
+		print(global_rotation, \" : \", rotation)
+		print(\"pop! \", impulse)
+		parent.apply_impulse(impulse)
+"
+
+[node name="ImpulseComponent" type="Marker2D" unique_id=1134326734]
+script = SubResource("GDScript_17waf")
+
+[node name="Timer" type="Timer" parent="." unique_id=1894718134]
+wait_time = 5.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://dc3pa21cnhrfw"]
+
+[ext_resource type="Script" uid="uid://bwbwysstqc7xf" path="res://scripts/projectile_emitter.gd" id="1_1m63r"]
+[ext_resource type="PackedScene" uid="uid://c2mbd5y2eyov5" path="res://scenes/components/projectile.tscn" id="2_8lwea"]
+
+[node name="ProjectileEmitter" type="Marker2D" unique_id=1520088627]
+script = ExtResource("1_1m63r")
+projectile_scene = ExtResource("2_8lwea")
+projectile_collision_flags = 0
+
+[node name="Timer" type="Timer" parent="." unique_id=1114021713]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -15,6 +15,10 @@ run/main_scene="uid://br4ve8o26nse1"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+main_ui="*uid://1gyqvkvsmrjh"
+
 [file_customization]
 
 folder_colors={
@@ -23,9 +27,22 @@ folder_colors={
 "res://scripts/": "yellow"
 }
 
+[layer_names]
+
+2d_physics/layer_1="World"
+2d_physics/layer_2="Layer2"
+2d_physics/layer_3="Layer3"
+2d_physics/layer_4="Layer4"
+2d_physics/layer_8="Mouse"
+2d_physics/layer_9="PlayerBody"
+2d_physics/layer_10="PlayerNoClip"
+2d_physics/layer_11="PlayerCollision"
+2d_physics/layer_12="PlayerDamage"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"
+2d/default_gravity=182.07800000000043
 
 [rendering]
 

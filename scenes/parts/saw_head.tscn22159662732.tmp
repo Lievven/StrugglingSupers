@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://cqqil8qjg2vgt"]
+
+[ext_resource type="Texture2D" uid="uid://dsr8imnteb2w6" path="res://assets/saw_1.png" id="1_gjtxl"]
+[ext_resource type="Script" uid="uid://q30xw7eqt644" path="res://scripts/saw_head.gd" id="1_trw4t"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sl0oh"]
+radius = 19.0
+
+[node name="SawComponent" type="RigidBody2D" unique_id=1536316582]
+collision_layer = 2048
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=87619567]
+texture = ExtResource("1_gjtxl")
+script = ExtResource("1_trw4t")
+
+[node name="Area2D" type="CollisionShape2D" parent="." unique_id=864282943]
+shape = SubResource("CircleShape2D_sl0oh")

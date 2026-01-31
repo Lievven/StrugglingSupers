@@ -1,32 +1,63 @@
 [gd_scene format=3 uid="uid://br4ve8o26nse1"]
 
-[ext_resource type="PackedScene" uid="uid://ci6dwsyamwp4v" path="res://scenes/base_part.tscn" id="1_0q20k"]
+[ext_resource type="PackedScene" uid="uid://ci6dwsyamwp4v" path="res://scenes/parts/base_body.tscn" id="1_0q20k"]
+[ext_resource type="Script" uid="uid://ej7hepax0hab" path="res://scripts/spawn_controller.gd" id="2_kapho"]
 [ext_resource type="Script" uid="uid://bqdi8qt5dmmpq" path="res://scripts/drag_controller.gd" id="2_l2v5r"]
-[ext_resource type="PackedScene" uid="uid://cq522q5rssv3t" path="res://scenes/drag_joint.tscn" id="3_6rhck"]
+[ext_resource type="PackedScene" uid="uid://s6m1wrhyawru" path="res://scenes/parts/saw_arm.tscn" id="3_lrsw3"]
+[ext_resource type="Script" uid="uid://cemc14t660smx" path="res://scripts/debug_controller.gd" id="5_kapho"]
+[ext_resource type="PackedScene" uid="uid://dmdvtnxhoabnw" path="res://scenes/parts/rocket_leg.tscn" id="5_lrsw3"]
+[ext_resource type="PackedScene" uid="uid://ck4b012i0yneo" path="res://scenes/parts/motor_leg.tscn" id="6_lrsw3"]
+[ext_resource type="PackedScene" uid="uid://d0bbnb3bw0dgm" path="res://scenes/parts/laser_head.tscn" id="7_sdn56"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0q20k"]
 size = Vector2(1369, 92.5)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lrsw3"]
+size = Vector2(425, 881)
+
 [node name="HeroBuilder" type="Node2D" unique_id=408255002]
 
-[node name="BasePart" parent="." unique_id=923943070 instance=ExtResource("1_0q20k")]
-position = Vector2(256, 189)
-script = null
+[node name="Bottom" type="StaticBody2D" parent="." unique_id=1690625894]
+position = Vector2(49, 54)
 
-[node name="BasePart2" parent="." unique_id=677537734 instance=ExtResource("1_0q20k")]
-position = Vector2(427, -48)
-
-[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1690625894]
-collision_layer = 3
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1341683994]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bottom" unique_id=1341683994]
 position = Vector2(517, 613)
 shape = SubResource("RectangleShape2D_0q20k")
 
-[node name="DragController" type="Node2D" parent="." unique_id=985302218 node_paths=PackedStringArray("parts")]
-script = ExtResource("2_l2v5r")
-parts = [NodePath("../DragJoint")]
+[node name="Top" type="StaticBody2D" parent="." unique_id=1289087498]
+position = Vector2(28, -767)
 
-[node name="DragJoint" parent="." unique_id=518220694 instance=ExtResource("3_6rhck")]
-position = Vector2(164, 140)
-node_b = NodePath("../BasePart")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Top" unique_id=703988894]
+position = Vector2(517, 613)
+shape = SubResource("RectangleShape2D_0q20k")
+
+[node name="Left" type="StaticBody2D" parent="." unique_id=1997921586]
+position = Vector2(51, 2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left" unique_id=1829663899]
+position = Vector2(-248, 259.5)
+shape = SubResource("RectangleShape2D_lrsw3")
+
+[node name="Right" type="StaticBody2D" parent="." unique_id=19689765]
+position = Vector2(1590, -11)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Right" unique_id=819014266]
+position = Vector2(-248, 259.5)
+shape = SubResource("RectangleShape2D_lrsw3")
+
+[node name="DragController" type="Node2D" parent="." unique_id=985302218]
+script = ExtResource("2_l2v5r")
+
+[node name="SpawnController" type="Node2D" parent="." unique_id=548106869 node_paths=PackedStringArray("parent_body", "drag_controller")]
+script = ExtResource("2_kapho")
+limb_scenes = Array[PackedScene]([ExtResource("1_0q20k"), ExtResource("3_lrsw3"), ExtResource("5_lrsw3"), ExtResource("6_lrsw3"), ExtResource("7_sdn56")])
+parent_body = NodePath("../BasePart")
+drag_controller = NodePath("../DragController")
+
+[node name="DebugController" type="Node2D" parent="SpawnController" unique_id=1335336285 node_paths=PackedStringArray("spawn_controller")]
+script = ExtResource("5_kapho")
+spawn_controller = NodePath("..")
+
+[node name="BasePart" parent="." unique_id=1069959148 instance=ExtResource("1_0q20k")]
+visible = false
+position = Vector2(353, 154)

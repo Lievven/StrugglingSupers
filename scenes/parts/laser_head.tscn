@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://d0bbnb3bw0dgm"]
+
+[ext_resource type="PackedScene" uid="uid://b8vwwp55x6wv7" path="res://scenes/components/drag_springs.tscn" id="1_l21d0"]
+[ext_resource type="Texture2D" uid="uid://dr86o6srpabs0" path="res://assets/head_1.png" id="2_poi2y"]
+[ext_resource type="PackedScene" uid="uid://dc3pa21cnhrfw" path="res://scenes/components/projectile_emitter.tscn" id="3_5n702"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_poi2y"]
+radius = 17.0
+height = 58.0
+
+[node name="CharacterBody2D" unique_id=1686936239 node_paths=PackedStringArray("attached_target") instance=ExtResource("1_l21d0")]
+attached_target = NodePath("RigidBody2D")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="." index="4" unique_id=49937301]
+position = Vector2(0, 12)
+collision_layer = 512
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D" index="0" unique_id=352156634]
+position = Vector2(0, -46)
+texture = ExtResource("2_poi2y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D" index="1" unique_id=2006964656]
+position = Vector2(0, -46)
+shape = SubResource("CapsuleShape2D_poi2y")
+
+[node name="ProjectileEmitter" parent="RigidBody2D" index="2" unique_id=1520088627 instance=ExtResource("3_5n702")]
+position = Vector2(7, -52)
+
+[node name="ProjectileEmitter2" parent="RigidBody2D" index="3" unique_id=596259770 instance=ExtResource("3_5n702")]
+position = Vector2(-10, -51)
+rotation = 3.1415927
+scale = Vector2(0.99999994, 0.99999994)

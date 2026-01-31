@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://1gyqvkvsmrjh"]
+
+[ext_resource type="Script" uid="uid://coexxto3ckoja" path="res://scripts/main_ui.gd" id="1_fnul3"]
+
+[node name="MainUi" type="Control" unique_id=2067656458 node_paths=PackedStringArray("player_hp_label", "enemy_hp_label")]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 67.0
+offset_right = 1.0
+offset_bottom = -80.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+script = ExtResource("1_fnul3")
+player_hp_label = NodePath("PlayerHP")
+enemy_hp_label = NodePath("EnemyHP")
+
+[node name="StartButton" type="Button" parent="." unique_id=1479893514]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -111.0
+offset_bottom = 67.0
+grow_horizontal = 0
+text = "Start"
+
+[node name="AddLimbButton" type="Button" parent="." unique_id=1950210347]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -109.0
+offset_top = 80.0
+offset_right = 1.0
+offset_bottom = 144.0
+grow_horizontal = 0
+text = "Spawn"
+
+[node name="TeleportButton" type="Button" parent="." unique_id=1728896600]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -106.0
+offset_top = 159.0
+offset_right = 1.0
+offset_bottom = 221.0
+grow_horizontal = 0
+text = "Teleport"
+
+[node name="PlayerHP" type="Label" parent="." unique_id=1633637014]
+layout_mode = 0
+offset_left = 9.0
+offset_top = -52.0
+offset_right = 66.0
+offset_bottom = -29.0
+text = "Player: "
+
+[node name="EnemyHP" type="Label" parent="." unique_id=1011978702]
+layout_mode = 0
+offset_left = 977.0
+offset_top = -48.0
+offset_right = 1060.0
+offset_bottom = -25.0
+text = "Opponent:"
+
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="AddLimbButton" to="." method="_on_add_limb_button_pressed"]
+[connection signal="pressed" from="TeleportButton" to="." method="_on_teleport_button_pressed"]

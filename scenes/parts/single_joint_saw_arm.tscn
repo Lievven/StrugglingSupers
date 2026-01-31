@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://slpkbxot66ys"]
+
+[ext_resource type="Script" uid="uid://cmogov5a7q4jx" path="res://scripts/drag_joint.gd" id="1_bmon4"]
+[ext_resource type="Texture2D" uid="uid://bbbughheh03i2" path="res://assets/joint.png" id="2_utseo"]
+[ext_resource type="Texture2D" uid="uid://b5p1c3wvxmf1i" path="res://assets/saw.png" id="4_g4aat"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tjfb1"]
+radius = 32.0
+
+[node name="DragJoint" type="PinJoint2D" unique_id=518220694]
+position = Vector2(-2, -1)
+node_a = NodePath("CharacterBody2D")
+node_b = NodePath("RigidBody2D")
+script = ExtResource("1_bmon4")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=1686936239]
+collision_layer = 2147483648
+collision_mask = 0
+input_pickable = true
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D" unique_id=2114061428]
+texture = ExtResource("2_utseo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=1549910529]
+shape = SubResource("CircleShape2D_tjfb1")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="." unique_id=859574182]
+position = Vector2(-5, 93)
+collision_layer = 4
+collision_mask = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D" unique_id=400020680]
+texture = ExtResource("4_g4aat")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RigidBody2D" unique_id=290571318]
+polygon = PackedVector2Array(-31, -106, -10, -119, 32, -119, 41, -108, 39, 7, 15, 21, -12, 22, -33, 10)
+
+[connection signal="input_event" from="CharacterBody2D" to="." method="_on_input_event"]
+[connection signal="input_event" from="CharacterBody2D" to="CharacterBody2D" method="_on_input_event"]
