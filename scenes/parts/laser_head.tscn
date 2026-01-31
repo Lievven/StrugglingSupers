@@ -11,7 +11,8 @@ height = 58.0
 [node name="CharacterBody2D" unique_id=1686936239 node_paths=PackedStringArray("attached_target") instance=ExtResource("1_l21d0")]
 attached_target = NodePath("RigidBody2D")
 
-[node name="RigidBody2D" type="RigidBody2D" parent="." index="4" unique_id=49937301]
+[node name="RigidBody2D" type="RigidBody2D" parent="." index="5" unique_id=49937301]
+z_index = -1
 position = Vector2(0, 12)
 collision_layer = 512
 

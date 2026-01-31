@@ -27,4 +27,4 @@ shape = SubResource("CapsuleShape2D_8v1c3")
 
 [node name="ImpulseComponent" parent="RigidBody2D" index="2" unique_id=1134326734 instance=ExtResource("3_8v1c3")]
 position = Vector2(2, -91)
-impulse_force = 2000.0
+impulse_force = 100.0

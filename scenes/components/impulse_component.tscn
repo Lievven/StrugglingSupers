@@ -4,7 +4,7 @@
 resource_name = "impulse_component"
 script/source = "extends Marker2D
 
-@export var impulse_force: float = 500.0
+@export var impulse_force: float = 50.0
 @export var impulse_delay: float = 0.5
 
 @onready var parent = get_parent()
@@ -18,8 +18,6 @@ func start_battle():
 func _on_timer_timeout() -> void:
 	if parent is RigidBody2D:
 		var impulse = Vector2(0, -1).rotated(global_rotation) * impulse_force
-		print(global_rotation, \" : \", rotation)
-		print(\"pop! \", impulse)
 		parent.apply_impulse(impulse)
 "
 

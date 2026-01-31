@@ -2,7 +2,7 @@ extends Marker2D
 class_name ProjectileEmitter
 
 @export var shot_delay: float = 1.0
-@export var shot_speed: float = 1000.0
+@export var shot_speed: float = 300.0
 @export var projectile_scene: PackedScene
 @export_flags_2d_physics var projectile_collision_flags
 
@@ -14,7 +14,6 @@ func _start_battle():
 
 
 func _on_timer_timeout() -> void:
-	print("fire")
 	var projectile = projectile_scene.instantiate()
 	projectile.position = global_position
 	var angle = global_rotation + randf_range(-0.2, 0.2)

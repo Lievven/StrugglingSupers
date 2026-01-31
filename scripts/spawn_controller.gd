@@ -21,11 +21,10 @@ func debug_spawn():
 	spawn_limb(1, 2, Vector2(500, 100))
 	#spawn_limb(3, 3, Vector2(200, 200))
 	#spawn_limb(3, 4, Vector2(400, 200))
-	spawn_limb(4, 0, Vector2(400, 200))
+	spawn_limb(5, 0, Vector2(400, 200))
 
 
 func start_battle():
-	parent_body.freeze = false
 	parent_body.input_pickable = true
 	parent_body.connect("input_event", $DebugController._on_part_input_event)
 

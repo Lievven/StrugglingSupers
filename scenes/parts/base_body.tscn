@@ -6,6 +6,7 @@
 [node name="BasePart" type="RigidBody2D" unique_id=923943070]
 collision_layer = 2
 input_pickable = true
+freeze = true
 script = ExtResource("1_a7mix")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=411443742]

@@ -4,12 +4,16 @@ class_name DragJoint
 signal drag_and_drop
 
 @export var base_target: BasePart
+@export var is_player: bool = true
+@export var physics_force: float = 50000
 @onready var drag_handle = $CharacterBody2D
 var on_handle = true
 
 
 func _ready() -> void:
 	main_ui.connect("start_battle", start_battle)
+	if not is_player:
+		$CharacterBody2D.visible = false
 
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	self.emit_signal("drag_and_drop", event, self)

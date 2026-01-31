@@ -14,9 +14,11 @@ input_pickable = true
 script = ExtResource("1_7ujbg")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2114061428]
+position = Vector2(0, 24.5)
 texture = ExtResource("2_7ujbg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1549910529]
+position = Vector2(0, 24.5)
 shape = SubResource("CircleShape2D_tjfb1")
 
 [node name="Spring1" type="DampedSpringJoint2D" parent="." unique_id=1362944276]

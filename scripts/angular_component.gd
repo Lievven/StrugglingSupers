@@ -1,5 +1,6 @@
 extends Node2D
 
+@export var angular_parent: Joint2D
 
 func _ready() -> void:
 	main_ui.connect("start_battle", start_battle)
@@ -7,5 +8,4 @@ func _ready() -> void:
 func start_battle():
 	var parent = get_parent()
 	if parent is RigidBody2D:
-		print("torque")
-		parent.add_constant_torque(1000000)
+		parent.add_constant_torque(angular_parent.physics_force)
