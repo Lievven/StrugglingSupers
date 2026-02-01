@@ -4,6 +4,10 @@
 [ext_resource type="PackedScene" uid="uid://xvt44y57romm" path="res://scenes/parts/base_limb.tscn" id="3_cskld"]
 [ext_resource type="Texture2D" uid="uid://rcvservx5ugb" path="res://assets/saw_holder_1.png" id="4_g3esy"]
 [ext_resource type="PackedScene" uid="uid://cqqil8qjg2vgt" path="res://scenes/parts/saw_head.tscn" id="5_3m7u8"]
+[ext_resource type="PackedScene" uid="uid://dc2xr4b341wrp" path="res://scenes/components/DamageComponent.tscn" id="5_ihyv7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3m7u8"]
+radius = 18.0
 
 [node name="DragJoint" unique_id=518220694 instance=ExtResource("1_g3esy")]
 node_b = NodePath("BaseLimb")
@@ -24,6 +28,15 @@ polygon = PackedVector2Array(-3, -32, 7, -32, 13, -26, 8, 11, 2, 13, -6, 13, -10
 
 [node name="SawComponent" parent="BaseLimb/RigidBody2D" index="2" unique_id=1536316582 instance=ExtResource("5_3m7u8")]
 position = Vector2(-3, 30)
+
+[node name="DamageComponent" parent="BaseLimb/RigidBody2D/SawComponent" index="2" unique_id=1322757197 instance=ExtResource("5_ihyv7")]
+collision_layer = 65536
+collision_mask = 65536
+damage_delay_timer = 0.01
+damage_amount = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BaseLimb/RigidBody2D/SawComponent/DamageComponent" index="0" unique_id=2049505882]
+shape = SubResource("CircleShape2D_3m7u8")
 
 [node name="PinJoint2D" type="PinJoint2D" parent="BaseLimb/RigidBody2D" index="3" unique_id=357069679]
 position = Vector2(-3, 30)

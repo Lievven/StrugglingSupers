@@ -10,6 +10,8 @@
 
 [node name="BasePart" parent="." unique_id=923943070 instance=ExtResource("1_13bxf")]
 rotation = -1.1186631
+collision_layer = 65536
+collision_mask = 257
 
 [node name="CharacterBody2D" parent="." unique_id=1686936239 node_paths=PackedStringArray("base_target") instance=ExtResource("2_r6euf")]
 position = Vector2(-27.999992, -27)
@@ -30,3 +32,16 @@ base_target = NodePath("../BasePart")
 position = Vector2(44, -6)
 rotation = 3.016658
 base_target = NodePath("../BasePart")
+
+[node name="BaseLimb" parent="DragJoint3" index="1" unique_id=923943070]
+collision_layer = 0
+
+[node name="SawComponent" parent="DragJoint3/BaseLimb/RigidBody2D" parent_id_path=PackedInt32Array(738717443, 1447447988) index="2" unique_id=1536316582]
+collision_layer = 0
+
+[node name="DamageComponent" parent="DragJoint3/BaseLimb/RigidBody2D/SawComponent" index="2" unique_id=1322757197]
+collision_layer = 0
+collision_mask = 256
+damage_player = true
+
+[editable path="DragJoint3"]

@@ -4,6 +4,7 @@ class_name ProjectileEmitter
 @export var shot_delay: float = 1.0
 @export var shot_speed: float = 300.0
 @export var projectile_scene: PackedScene
+@export var targets_player: bool = false
 @export_flags_2d_physics var projectile_collision_flags
 
 func _ready() -> void:
@@ -16,6 +17,9 @@ func _start_battle():
 func _on_timer_timeout() -> void:
 	var projectile = projectile_scene.instantiate()
 	projectile.position = global_position
+	var damage_component: DamageComponent = projectile.damage_component
+	damage_component.set_target(targets_player)
+	damage_component.free_on_damage = projectile
 	var angle = global_rotation + randf_range(-0.2, 0.2)
 	projectile.velocity = Vector2.from_angle(angle) * shot_speed
 	get_tree().root.add_child(projectile)

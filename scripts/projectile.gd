@@ -1,7 +1,7 @@
-extends Area2D
+extends Node2D
 class_name Projectile
 
-
+@export var damage_component: DamageComponent
 
 var velocity: Vector2 = Vector2(1, 0)
 

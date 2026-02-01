@@ -24,7 +24,7 @@ func add_part(part):
 
 func _physics_process(delta: float) -> void:
 	if draggable:
-		draggable.position = get_viewport().get_mouse_position()
+		draggable.drag_part(get_viewport().get_mouse_position())
 
 
 func _unhandled_input(event):

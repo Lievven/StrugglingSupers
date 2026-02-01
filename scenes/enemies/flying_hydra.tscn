@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://dsfuafj250dxj"]
+
+[ext_resource type="PackedScene" uid="uid://ci6dwsyamwp4v" path="res://scenes/parts/base_body.tscn" id="1_rv6mk"]
+[ext_resource type="PackedScene" uid="uid://d0bbnb3bw0dgm" path="res://scenes/parts/laser_head.tscn" id="2_105pn"]
+[ext_resource type="PackedScene" uid="uid://ck4b012i0yneo" path="res://scenes/parts/motor_leg.tscn" id="3_1ke5a"]
+[ext_resource type="PackedScene" uid="uid://dxfs6l2oo3n5x" path="res://scenes/parts/air_head.tscn" id="3_rv6mk"]
+
+[node name="Bull" type="Node2D" unique_id=357274138]
+
+[node name="BasePart" parent="." unique_id=923943070 instance=ExtResource("1_rv6mk")]
+rotation = -3.0995903
+collision_layer = 65536
+collision_mask = 257
+
+[node name="CharacterBody2D" parent="BasePart" unique_id=1686936239 node_paths=PackedStringArray("base_target") instance=ExtResource("2_105pn")]
+position = Vector2(31.257942, -18.328686)
+rotation = 2.5178483
+base_target = NodePath("..")
+
+[node name="ProjectileEmitter" parent="BasePart/CharacterBody2D/RigidBody2D" parent_id_path=PackedInt32Array(1686936239, 49937301) index="2" unique_id=1520088627]
+targets_player = true
+projectile_collision_flags = 256
+
+[node name="ProjectileEmitter2" parent="BasePart/CharacterBody2D/RigidBody2D" parent_id_path=PackedInt32Array(1686936239, 49937301) index="3" unique_id=596259770]
+targets_player = true
+projectile_collision_flags = 256
+
+[node name="CharacterBody2D2" parent="BasePart" unique_id=1025897733 node_paths=PackedStringArray("base_target") instance=ExtResource("2_105pn")]
+position = Vector2(-28.02594, -23.844223)
+rotation = 3.692521
+base_target = NodePath("..")
+
+[node name="ProjectileEmitter" parent="BasePart/CharacterBody2D2/RigidBody2D" parent_id_path=PackedInt32Array(1025897733, 49937301) index="2" unique_id=1520088627]
+targets_player = true
+projectile_collision_flags = 256
+
+[node name="ProjectileEmitter2" parent="BasePart/CharacterBody2D2/RigidBody2D" parent_id_path=PackedInt32Array(1025897733, 49937301) index="3" unique_id=596259770]
+targets_player = true
+projectile_collision_flags = 256
+
+[node name="CharacterBody2D3" parent="BasePart" unique_id=785895796 node_paths=PackedStringArray("base_target") instance=ExtResource("3_rv6mk")]
+position = Vector2(-19.67979, 31.85445)
+rotation = 3.133387
+base_target = NodePath("..")
+
+[node name="CharacterBody2D4" parent="BasePart" unique_id=1116418668 node_paths=PackedStringArray("base_target") instance=ExtResource("3_rv6mk")]
+position = Vector2(19.201834, 28.218597)
+rotation = 2.9971309
+base_target = NodePath("..")
+
+[node name="DragJoint" parent="BasePart" unique_id=518220694 node_paths=PackedStringArray("base_target") instance=ExtResource("3_1ke5a")]
+position = Vector2(3.299923, 30.88868)
+base_target = NodePath("..")
+physics_force = -50000.0
+
+[editable path="BasePart/CharacterBody2D"]
+[editable path="BasePart/CharacterBody2D2"]
+[editable path="BasePart/CharacterBody2D3"]

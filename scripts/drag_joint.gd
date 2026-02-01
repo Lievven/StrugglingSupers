@@ -9,6 +9,11 @@ signal drag_and_drop
 @onready var drag_handle = $CharacterBody2D
 var on_handle = true
 
+var attached_button: PartButton = null
+
+func drag_part(pos: Vector2):
+	position = pos
+	attached_button.target_position = pos
 
 func _ready() -> void:
 	main_ui.connect("start_battle", start_battle)
@@ -23,7 +28,9 @@ func swap_target():
 	if on_handle:
 		node_a = base_target.get_path()
 		on_handle = false
+		$CharacterBody2D.visible = false
 	else:
+		$CharacterBody2D.visible = true
 		$CharacterBody2D.position = position
 		node_a = drag_handle.get_path()
 		on_handle = true

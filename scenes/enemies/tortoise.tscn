@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://776rhrw7t0dy"]
+
+[ext_resource type="PackedScene" uid="uid://ci6dwsyamwp4v" path="res://scenes/parts/base_body.tscn" id="1_q1iln"]
+[ext_resource type="PackedScene" uid="uid://dxfs6l2oo3n5x" path="res://scenes/parts/air_head.tscn" id="2_1ll4h"]
+[ext_resource type="PackedScene" uid="uid://s6m1wrhyawru" path="res://scenes/parts/saw_arm.tscn" id="5_2n5he"]
+
+[node name="Bull" type="Node2D" unique_id=357274138]
+
+[node name="BasePart" parent="." unique_id=923943070 instance=ExtResource("1_q1iln")]
+rotation = -3.0995903
+collision_layer = 65536
+collision_mask = 257
+
+[node name="CharacterBody2D" parent="." unique_id=1686936239 node_paths=PackedStringArray("base_target") instance=ExtResource("2_1ll4h")]
+position = Vector2(-27.999992, -27)
+rotation = -0.29484135
+base_target = NodePath("../BasePart")
+
+[node name="DragJoint3" parent="." unique_id=738717443 node_paths=PackedStringArray("base_target") instance=ExtResource("5_2n5he")]
+position = Vector2(-42.000008, 31.000004)
+rotation = 1.6444396
+base_target = NodePath("../BasePart")
+
+[node name="BaseLimb" parent="DragJoint3" index="1" unique_id=923943070]
+collision_layer = 0
+
+[node name="SawComponent" parent="DragJoint3/BaseLimb/RigidBody2D" parent_id_path=PackedInt32Array(738717443, 1447447988) index="2" unique_id=1536316582]
+collision_layer = 0
+
+[node name="DamageComponent" parent="DragJoint3/BaseLimb/RigidBody2D/SawComponent" index="2" unique_id=1322757197]
+collision_layer = 0
+collision_mask = 256
+damage_player = true
+
+[node name="DragJoint4" parent="." unique_id=518220694 node_paths=PackedStringArray("base_target") instance=ExtResource("5_2n5he")]
+position = Vector2(33, 33)
+rotation = 4.6608224
+base_target = NodePath("../BasePart")
+
+[node name="BaseLimb" parent="DragJoint4" index="1" unique_id=923943070]
+collision_layer = 0
+
+[node name="SawComponent" parent="DragJoint4/BaseLimb/RigidBody2D" parent_id_path=PackedInt32Array(518220694, 1447447988) index="2" unique_id=1536316582]
+collision_layer = 0
+
+[node name="DamageComponent" parent="DragJoint4/BaseLimb/RigidBody2D/SawComponent" index="2" unique_id=1322757197]
+collision_layer = 0
+collision_mask = 256
+damage_player = true
+
+[editable path="DragJoint3"]
+[editable path="DragJoint4"]

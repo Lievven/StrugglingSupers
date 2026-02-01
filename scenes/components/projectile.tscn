@@ -2,20 +2,26 @@
 
 [ext_resource type="Texture2D" uid="uid://bbbughheh03i2" path="res://assets/joint.png" id="1_ae8u7"]
 [ext_resource type="Script" uid="uid://fx75ltb27bis" path="res://scripts/projectile.gd" id="1_im1d0"]
+[ext_resource type="PackedScene" uid="uid://dc2xr4b341wrp" path="res://scenes/components/DamageComponent.tscn" id="3_c6x4h"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ae8u7"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_c6x4h"]
 
-[node name="Projectile" type="Area2D" unique_id=7886697]
+[node name="Projectile" type="Node2D" unique_id=709702978 node_paths=PackedStringArray("damage_component")]
 script = ExtResource("1_im1d0")
+damage_component = NodePath("DamageComponent")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1029828692]
 texture = ExtResource("1_ae8u7")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1839375071]
-shape = SubResource("CircleShape2D_ae8u7")
-
 [node name="Timer" type="Timer" parent="." unique_id=621787295]
 one_shot = true
 autostart = true
+
+[node name="DamageComponent" parent="." unique_id=1322757197 instance=ExtResource("3_c6x4h")]
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageComponent" unique_id=1783972827]
+shape = SubResource("CircleShape2D_c6x4h")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

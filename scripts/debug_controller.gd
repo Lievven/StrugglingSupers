@@ -19,7 +19,7 @@ func _unhandled_input(event):
 	and draggable:
 		draggable.constant_force = Vector2(0, 0)
 		draggable.linear_damp_mode = RigidBody2D.DAMP_MODE_COMBINE
-		#draggable.linear_damp = 1.0
+		draggable.linear_damp = 1.0
 		draggable = null
 		return
 
@@ -37,5 +37,5 @@ func _on_part_input_event(viewport, event, shape_idx):
 		if event.pressed:
 			draggable = spawn_controller.parent_body
 			draggable.linear_damp_mode = RigidBody2D.DAMP_MODE_REPLACE
-			#draggable.linear_damp = 20
+			draggable.linear_damp = 20
 			drag_handle = event.position - spawn_controller.parent_body.position

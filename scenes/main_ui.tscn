@@ -1,8 +1,16 @@
 [gd_scene format=3 uid="uid://1gyqvkvsmrjh"]
 
 [ext_resource type="Script" uid="uid://coexxto3ckoja" path="res://scripts/main_ui.gd" id="1_fnul3"]
+[ext_resource type="Script" uid="uid://cssb26qnqodbr" path="res://scripts/inventory.gd" id="2_e6fyy"]
+[ext_resource type="PackedScene" uid="uid://ccvxgc2a72ldb" path="res://scenes/part_button.tscn" id="3_scoti"]
 
-[node name="MainUi" type="Control" unique_id=2067656458 node_paths=PackedStringArray("player_hp_label", "enemy_hp_label")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j6a7c"]
+bg_color = Color(0.7921569, 0.21176471, 0.24313726, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e6fyy"]
+bg_color = Color(0.28235295, 0.7411765, 0.3254902, 1)
+
+[node name="MainUi" type="Control" unique_id=2067656458 node_paths=PackedStringArray("inventory", "player_hp_label", "enemy_hp_label", "lives_label")]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 3
 anchors_preset = 15
@@ -18,8 +26,10 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 2
 script = ExtResource("1_fnul3")
-player_hp_label = NodePath("PlayerHP")
-enemy_hp_label = NodePath("EnemyHP")
+inventory = NodePath("Inventory")
+player_hp_label = NodePath("VBoxContainer/PlayerHealthBar")
+enemy_hp_label = NodePath("VBoxContainer/EnemyHealthBar")
+lives_label = NodePath("VBoxContainer/Lives")
 
 [node name="StartButton" type="Button" parent="." unique_id=1479893514]
 layout_mode = 1
@@ -32,6 +42,7 @@ grow_horizontal = 0
 text = "Start"
 
 [node name="AddLimbButton" type="Button" parent="." unique_id=1950210347]
+visible = false
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -44,6 +55,7 @@ grow_horizontal = 0
 text = "Spawn"
 
 [node name="TeleportButton" type="Button" parent="." unique_id=1728896600]
+visible = false
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -55,22 +67,76 @@ offset_bottom = 221.0
 grow_horizontal = 0
 text = "Teleport"
 
-[node name="PlayerHP" type="Label" parent="." unique_id=1633637014]
+[node name="Inventory" type="HBoxContainer" parent="." unique_id=1802377630]
 layout_mode = 0
-offset_left = 9.0
-offset_top = -52.0
-offset_right = 66.0
-offset_bottom = -29.0
-text = "Player: "
+offset_left = 888.0
+offset_top = -8.0
+offset_right = 1015.0
+offset_bottom = 321.0
+script = ExtResource("2_e6fyy")
+part_button_scene = ExtResource("3_scoti")
 
-[node name="EnemyHP" type="Label" parent="." unique_id=1011978702]
+[node name="ActiveParts" type="VBoxContainer" parent="Inventory" unique_id=1122580436]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Inventory/ActiveParts" unique_id=2004741556]
+layout_mode = 2
+text = "Active"
+
+[node name="ReserveParts" type="VBoxContainer" parent="Inventory" unique_id=623078516]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Inventory/ReserveParts" unique_id=46480806]
+layout_mode = 2
+text = "Inventory"
+
+[node name="PartButton" parent="Inventory/ReserveParts" unique_id=1353554395 instance=ExtResource("3_scoti")]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1245067444]
 layout_mode = 0
-offset_left = 977.0
-offset_top = -48.0
-offset_right = 1060.0
-offset_bottom = -25.0
-text = "Opponent:"
+offset_left = 39.0
+offset_top = -40.0
+offset_right = 122.0
+offset_bottom = 72.0
+mouse_filter = 2
+mouse_behavior_recursive = 2
+
+[node name="TimeRemaining" type="Label" parent="VBoxContainer" unique_id=2111369354]
+layout_mode = 2
+text = "Time: 120s"
+
+[node name="Lives" type="Label" parent="VBoxContainer" unique_id=1547025820]
+layout_mode = 2
+text = "Lives: 3"
+
+[node name="EnemyHealthBar" type="ProgressBar" parent="VBoxContainer" unique_id=644639433]
+layout_mode = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_j6a7c")
+value = 100.0
+
+[node name="PlayerHealthBar" type="ProgressBar" parent="VBoxContainer" unique_id=672020572]
+layout_mode = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_e6fyy")
+value = 100.0
+
+[node name="GameOutcomeButton" type="Button" parent="." unique_id=561071596]
+visible = false
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -72.5
+offset_bottom = 72.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 100
+text = "You Win"
 
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="AddLimbButton" to="." method="_on_add_limb_button_pressed"]
 [connection signal="pressed" from="TeleportButton" to="." method="_on_teleport_button_pressed"]
+[connection signal="part_button_pressed" from="Inventory/ReserveParts/PartButton" to="Inventory" method="_on_part_button_pressed"]
+[connection signal="gui_input" from="GameOutcomeButton" to="GameOutcomeButton" method="_on_gui_input"]
+[connection signal="pressed" from="GameOutcomeButton" to="." method="_on_game_outcome_button_pressed"]

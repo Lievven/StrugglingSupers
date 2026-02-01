@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://cl3ul8gian2bk"]
+
+[ext_resource type="PackedScene" uid="uid://ci6dwsyamwp4v" path="res://scenes/parts/base_body.tscn" id="1_hwyo0"]
+[ext_resource type="PackedScene" uid="uid://d0bbnb3bw0dgm" path="res://scenes/parts/laser_head.tscn" id="2_03hk0"]
+
+[node name="Bull" type="Node2D" unique_id=357274138]
+
+[node name="BasePart" parent="." unique_id=923943070 instance=ExtResource("1_hwyo0")]
+rotation = -3.0995903
+collision_layer = 65536
+collision_mask = 257
+
+[node name="CharacterBody2D" parent="BasePart" unique_id=1686936239 node_paths=PackedStringArray("base_target") instance=ExtResource("2_03hk0")]
+rotation = 3.0883255
+base_target = NodePath("..")
+
+[node name="ProjectileEmitter" parent="BasePart/CharacterBody2D/RigidBody2D" parent_id_path=PackedInt32Array(1686936239, 49937301) index="2" unique_id=1520088627]
+targets_player = true
+projectile_collision_flags = 256
+
+[node name="ProjectileEmitter2" parent="BasePart/CharacterBody2D/RigidBody2D" parent_id_path=PackedInt32Array(1686936239, 49937301) index="3" unique_id=596259770]
+targets_player = true
+projectile_collision_flags = 256
+
+[editable path="BasePart/CharacterBody2D"]

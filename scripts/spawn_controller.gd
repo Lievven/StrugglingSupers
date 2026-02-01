@@ -10,18 +10,26 @@ var slots = []
 
 
 func _ready():
+	main_ui.inventory.spawn_controller = self
 	main_ui.connect("debug_spawn", debug_spawn)
 	main_ui.connect("start_battle", start_battle)
 	for i in range(slot_count):
 		slots.append(null)
+	
+	call_deferred("reset_level")
+	
+	print(get_viewport().get_visible_rect().size)
+
+func reset_level():
+	spawn_base(0, Vector2(300, 150))
+	
 
 func debug_spawn():
-	spawn_base(0, Vector2(300, 150))
-	spawn_limb(1, 1, Vector2(100, 100))
-	spawn_limb(1, 2, Vector2(500, 100))
+	spawn_limb(1, 1, Vector2(100, 100), null)
+	spawn_limb(1, 2, Vector2(500, 100), null)
 	#spawn_limb(3, 3, Vector2(200, 200))
 	#spawn_limb(3, 4, Vector2(400, 200))
-	spawn_limb(5, 0, Vector2(400, 200))
+	spawn_limb(4, 0, Vector2(400, 200), null)
 
 
 func start_battle():
@@ -31,7 +39,7 @@ func start_battle():
 
 func spawn_base(limb_id, pos):
 	if parent_body:
-		parent_body.free()
+		parent_body.queue_free()
 	parent_body = limb_scenes[limb_id].instantiate()
 	parent_body.position = pos
 	parent_body.freeze = true
@@ -39,8 +47,25 @@ func spawn_base(limb_id, pos):
 	get_parent().add_child(parent_body)
 	
 
+func remove_limb(slot_id: int):
+	if slot_id < 0 or slot_id >= slots.size():
+		return
+	var limb = slots[slot_id]
+	limb.queue_free()
+	slots[slot_id] = null
+	
 
-func spawn_limb(limb_id: int, slot_id: int, pos: Vector2):
+func fill_limb_slot(limb_id: int, pos: Vector2, button):
+	for i in range(slots.size()):
+		if not slots[i] == null:
+			continue
+		spawn_limb(limb_id, i, pos, button)
+		return i
+	
+	return -1
+
+
+func spawn_limb(limb_id: int, slot_id: int, pos: Vector2, button: PartButton):
 	var slot = slots[slot_id]
 	if  slot is Node2D:
 		slot.queue_free()
@@ -50,6 +75,7 @@ func spawn_limb(limb_id: int, slot_id: int, pos: Vector2):
 		new_limb.base_target = parent_body
 	new_limb.position = pos
 	
+	new_limb.attached_button = button
 	slots[slot_id] = new_limb
 	drag_controller.add_part(new_limb)
 	get_parent().add_child(new_limb)

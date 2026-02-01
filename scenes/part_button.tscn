@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://ccvxgc2a72ldb"]
+
+[ext_resource type="Texture2D" uid="uid://dsr8imnteb2w6" path="res://assets/saw_1.png" id="1_l6gxx"]
+[ext_resource type="Script" uid="uid://ddmolsw0d56sn" path="res://scripts/part_button.gd" id="2_lbg37"]
+
+[node name="PartButton" type="Button" unique_id=1353554395]
+text = "1"
+icon = ExtResource("1_l6gxx")
+script = ExtResource("2_lbg37")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

@@ -38,6 +38,7 @@ folder_colors={
 2d_physics/layer_10="PlayerNoClip"
 2d_physics/layer_11="PlayerCollision"
 2d_physics/layer_12="PlayerDamage"
+2d_physics/layer_17="EnemyBody"
 
 [physics]
 

@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://b5llotvcfd0ph"]
+
+[ext_resource type="PackedScene" uid="uid://ci6dwsyamwp4v" path="res://scenes/parts/base_body.tscn" id="1_gxntp"]
+[ext_resource type="PackedScene" uid="uid://d0bbnb3bw0dgm" path="res://scenes/parts/laser_head.tscn" id="2_gxntp"]
+[ext_resource type="PackedScene" uid="uid://ck4b012i0yneo" path="res://scenes/parts/motor_leg.tscn" id="3_qhqtt"]
+[ext_resource type="PackedScene" uid="uid://dmdvtnxhoabnw" path="res://scenes/parts/rocket_leg.tscn" id="4_acq54"]
+[ext_resource type="PackedScene" uid="uid://s6m1wrhyawru" path="res://scenes/parts/saw_arm.tscn" id="5_417wt"]
+
+[node name="Bull" type="Node2D" unique_id=357274138]
+
+[node name="BasePart" parent="." unique_id=923943070 instance=ExtResource("1_gxntp")]
+rotation = -1.1186631
+collision_layer = 65536
+collision_mask = 257
+
+[node name="CharacterBody2D" parent="BasePart" unique_id=1686936239 node_paths=PackedStringArray("base_target") instance=ExtResource("2_gxntp")]
+position = Vector2(18.247807, -31.096905)
+rotation = 0.97879076
+base_target = NodePath("..")
+
+[node name="ProjectileEmitter" parent="BasePart/CharacterBody2D/RigidBody2D" parent_id_path=PackedInt32Array(1686936239, 49937301) index="2" unique_id=1520088627]
+targets_player = true
+projectile_collision_flags = 256
+
+[node name="ProjectileEmitter2" parent="BasePart/CharacterBody2D/RigidBody2D" parent_id_path=PackedInt32Array(1686936239, 49937301) index="3" unique_id=596259770]
+targets_player = true
+projectile_collision_flags = 256
+
+[node name="DragJoint" parent="." unique_id=518220694 node_paths=PackedStringArray("base_target") instance=ExtResource("3_qhqtt")]
+position = Vector2(-42, 19)
+base_target = NodePath("../BasePart")
+physics_force = -50000.0
+
+[node name="DragJoint2" parent="." unique_id=1231464788 node_paths=PackedStringArray("base_target") instance=ExtResource("4_acq54")]
+position = Vector2(26, 27)
+rotation = -0.28686747
+base_target = NodePath("../BasePart")
+physics_force = 500000.0
+
+[node name="DragJoint3" parent="." unique_id=738717443 node_paths=PackedStringArray("base_target") instance=ExtResource("5_417wt")]
+position = Vector2(44, -6)
+rotation = 3.016658
+base_target = NodePath("../BasePart")
+
+[node name="BaseLimb" parent="DragJoint3" index="1" unique_id=923943070]
+collision_layer = 0
+
+[node name="SawComponent" parent="DragJoint3/BaseLimb/RigidBody2D" parent_id_path=PackedInt32Array(738717443, 1447447988) index="2" unique_id=1536316582]
+collision_layer = 0
+
+[node name="DamageComponent" parent="DragJoint3/BaseLimb/RigidBody2D/SawComponent" index="2" unique_id=1322757197]
+collision_layer = 0
+collision_mask = 256
+damage_player = true
+
+[editable path="BasePart/CharacterBody2D"]
+[editable path="DragJoint3"]

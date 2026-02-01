@@ -1,0 +1,81 @@
+[gd_scene format=3 uid="uid://c8r42mb385xm6"]
+
+[ext_resource type="PackedScene" uid="uid://ci6dwsyamwp4v" path="res://scenes/parts/base_body.tscn" id="1_8kxuy"]
+[ext_resource type="PackedScene" uid="uid://d0bbnb3bw0dgm" path="res://scenes/parts/laser_head.tscn" id="2_lidgq"]
+[ext_resource type="PackedScene" uid="uid://ck4b012i0yneo" path="res://scenes/parts/motor_leg.tscn" id="3_lidgq"]
+
+[node name="Bull" type="Node2D" unique_id=357274138]
+
+[node name="BasePart" parent="." unique_id=923943070 instance=ExtResource("1_8kxuy")]
+rotation = -3.0995903
+collision_layer = 65536
+collision_mask = 257
+
+[node name="CharacterBody2D" parent="BasePart" unique_id=1686936239 node_paths=PackedStringArray("base_target") instance=ExtResource("2_lidgq")]
+position = Vector2(31.257942, -18.328686)
+rotation = 2.5178483
+base_target = NodePath("..")
+
+[node name="ProjectileEmitter" parent="BasePart/CharacterBody2D/RigidBody2D" parent_id_path=PackedInt32Array(1686936239, 49937301) index="2" unique_id=1520088627]
+targets_player = true
+projectile_collision_flags = 256
+
+[node name="ProjectileEmitter2" parent="BasePart/CharacterBody2D/RigidBody2D" parent_id_path=PackedInt32Array(1686936239, 49937301) index="3" unique_id=596259770]
+targets_player = true
+projectile_collision_flags = 256
+
+[node name="CharacterBody2D2" parent="BasePart" unique_id=1025897733 node_paths=PackedStringArray("base_target") instance=ExtResource("2_lidgq")]
+position = Vector2(-28.02594, -23.844223)
+rotation = 3.692521
+base_target = NodePath("..")
+
+[node name="ProjectileEmitter" parent="BasePart/CharacterBody2D2/RigidBody2D" parent_id_path=PackedInt32Array(1025897733, 49937301) index="2" unique_id=1520088627]
+targets_player = true
+projectile_collision_flags = 256
+
+[node name="ProjectileEmitter2" parent="BasePart/CharacterBody2D2/RigidBody2D" parent_id_path=PackedInt32Array(1025897733, 49937301) index="3" unique_id=596259770]
+targets_player = true
+projectile_collision_flags = 256
+
+[node name="CharacterBody2D3" parent="BasePart" unique_id=329296682 node_paths=PackedStringArray("base_target") instance=ExtResource("2_lidgq")]
+position = Vector2(-23.29835, 41.01447)
+rotation = 3.0883255
+base_target = NodePath("..")
+
+[node name="ProjectileEmitter" parent="BasePart/CharacterBody2D3/RigidBody2D" parent_id_path=PackedInt32Array(329296682, 49937301) index="2" unique_id=1520088627]
+targets_player = true
+projectile_collision_flags = 256
+
+[node name="ProjectileEmitter2" parent="BasePart/CharacterBody2D3/RigidBody2D" parent_id_path=PackedInt32Array(329296682, 49937301) index="3" unique_id=596259770]
+targets_player = true
+projectile_collision_flags = 256
+
+[node name="CharacterBody2D4" parent="BasePart" unique_id=765334367 node_paths=PackedStringArray("base_target") instance=ExtResource("2_lidgq")]
+position = Vector2(26.657549, 38.91497)
+rotation = 3.0883255
+base_target = NodePath("..")
+
+[node name="ProjectileEmitter" parent="BasePart/CharacterBody2D4/RigidBody2D" parent_id_path=PackedInt32Array(765334367, 49937301) index="2" unique_id=1520088627]
+targets_player = true
+projectile_collision_flags = 256
+
+[node name="ProjectileEmitter2" parent="BasePart/CharacterBody2D4/RigidBody2D" parent_id_path=PackedInt32Array(765334367, 49937301) index="3" unique_id=596259770]
+targets_player = true
+projectile_collision_flags = 256
+
+[node name="DragJoint" parent="BasePart" unique_id=518220694 node_paths=PackedStringArray("base_target") instance=ExtResource("3_lidgq")]
+position = Vector2(27.429436, -14.164253)
+rotation = -2.690646
+base_target = NodePath("..")
+physics_force = -50000.0
+
+[node name="DragJoint2" parent="BasePart" unique_id=1683493162 node_paths=PackedStringArray("base_target") instance=ExtResource("3_lidgq")]
+position = Vector2(-21.485361, -11.107626)
+rotation = 2.6807356
+base_target = NodePath("..")
+physics_force = -50000.0
+
+[editable path="BasePart/CharacterBody2D"]
+[editable path="BasePart/CharacterBody2D2"]
+[editable path="BasePart/CharacterBody2D3"]
+[editable path="BasePart/CharacterBody2D4"]
