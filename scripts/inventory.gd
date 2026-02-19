@@ -40,7 +40,6 @@ func reset_level():
 			spawn_controller.spawn_limb(b.part_id, b.spawn_slot, b.target_position, b)
 	
 	generate_new_part_buttons(2)
-	
 
 
 func generate_new_part_buttons(amount: int = 1):

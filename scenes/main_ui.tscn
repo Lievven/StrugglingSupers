@@ -113,11 +113,13 @@ text = "Lives: 3"
 
 [node name="EnemyHealthBar" type="ProgressBar" parent="VBoxContainer" unique_id=644639433]
 layout_mode = 2
+mouse_filter = 2
 theme_override_styles/fill = SubResource("StyleBoxFlat_j6a7c")
 value = 100.0
 
 [node name="PlayerHealthBar" type="ProgressBar" parent="VBoxContainer" unique_id=672020572]
 layout_mode = 2
+mouse_filter = 2
 theme_override_styles/fill = SubResource("StyleBoxFlat_e6fyy")
 value = 100.0
 
