@@ -112,6 +112,7 @@ func reset_level():
 
 
 func reset_game():
+	enemy_controller.reset_game()
 	reset_level()
 	lives = default_lives
 	lives_label.text = "Lives: " + str(lives)
@@ -130,6 +131,8 @@ func _teleport(node, target: Vector2 = Vector2(0, 0)):
 
 
 func game_over(won: bool = false):
+	if not game_playing:
+		return
 	game_playing = false
 	if won:
 		spawn_game_outcome("You Win!")
