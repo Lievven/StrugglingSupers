@@ -17,8 +17,7 @@ func _ready():
 		slots.append(null)
 	
 	call_deferred("reset_level")
-	
-	print(get_viewport().get_visible_rect().size)
+
 
 func reset_level():
 	spawn_base(0, Vector2(300, 150))

@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cq522q5rssv3t" path="res://scenes/components/drag_joint.tscn" id="1_xqjke"]
 [ext_resource type="Texture2D" uid="uid://3ypl8lj71qmc" path="res://assets/leg_1.png" id="2_5u4nb"]
-[ext_resource type="Script" uid="uid://c1c14x76h5flb" path="res://scripts/angular_component.gd" id="3_xqjke"]
+[ext_resource type="PackedScene" uid="uid://c6sa0f6mivt3p" path="res://scenes/parts/angular_component.tscn" id="3_xqjke"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xqjke"]
 friction = 10.0
@@ -13,14 +13,15 @@ height = 74.0
 
 [node name="DragJoint" unique_id=518220694 instance=ExtResource("1_xqjke")]
 node_b = NodePath("RigidBody2D")
-angular_limit_lower = -0.2617994
-angular_limit_upper = 0.2617994
+angular_limit_lower = -0.017453292
+angular_limit_upper = 0.017453292
 motor_target_velocity = 0.48624873
 
 [node name="RigidBody2D" type="RigidBody2D" parent="." index="1" unique_id=1926469242]
 position = Vector2(-2, 92)
 collision_layer = 512
 physics_material_override = SubResource("PhysicsMaterial_xqjke")
+angular_damp = 7.0
 
 [node name="Sprite2D" type="Sprite2D" parent="RigidBody2D" index="0" unique_id=562422721]
 position = Vector2(0, -67)
@@ -30,6 +31,5 @@ texture = ExtResource("2_5u4nb")
 position = Vector2(1, -66)
 shape = SubResource("CapsuleShape2D_8v1c3")
 
-[node name="AngularComponent" type="Node2D" parent="RigidBody2D" index="2" unique_id=1060834535 node_paths=PackedStringArray("angular_parent")]
-script = ExtResource("3_xqjke")
+[node name="AngularComponent" parent="RigidBody2D" index="2" unique_id=352158798 node_paths=PackedStringArray("angular_parent") instance=ExtResource("3_xqjke")]
 angular_parent = NodePath("../..")

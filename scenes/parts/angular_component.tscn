@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://c6sa0f6mivt3p"]
+
+[ext_resource type="Script" uid="uid://c1c14x76h5flb" path="res://scripts/angular_component.gd" id="1_ba38j"]
+
+[node name="AngularComponent" type="Node2D" unique_id=352158798 node_paths=PackedStringArray("angular_parent")]
+script = ExtResource("1_ba38j")
+angular_parent = NodePath("")

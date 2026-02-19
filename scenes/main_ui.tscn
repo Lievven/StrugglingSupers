@@ -10,7 +10,7 @@ bg_color = Color(0.7921569, 0.21176471, 0.24313726, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e6fyy"]
 bg_color = Color(0.28235295, 0.7411765, 0.3254902, 1)
 
-[node name="MainUi" type="Control" unique_id=2067656458 node_paths=PackedStringArray("inventory", "player_hp_label", "enemy_hp_label", "lives_label")]
+[node name="MainUi" type="Control" unique_id=2067656458 node_paths=PackedStringArray("inventory", "player_hp_label", "enemy_hp_label", "lives_label", "time_display")]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 3
 anchors_preset = 15
@@ -30,6 +30,8 @@ inventory = NodePath("Inventory")
 player_hp_label = NodePath("VBoxContainer/PlayerHealthBar")
 enemy_hp_label = NodePath("VBoxContainer/EnemyHealthBar")
 lives_label = NodePath("VBoxContainer/Lives")
+level_time = 60
+time_display = NodePath("VBoxContainer/TimeRemaining")
 
 [node name="StartButton" type="Button" parent="." unique_id=1479893514]
 layout_mode = 1
@@ -42,7 +44,6 @@ grow_horizontal = 0
 text = "Start"
 
 [node name="AddLimbButton" type="Button" parent="." unique_id=1950210347]
-visible = false
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0

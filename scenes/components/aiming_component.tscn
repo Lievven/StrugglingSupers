@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://cmp7nfoakbf16"]
+
+[ext_resource type="Script" uid="uid://b8udengjpgxcl" path="res://scripts/aiming_component.gd" id="1_iysnv"]
+
+[node name="AimingComponent" type="Marker2D" unique_id=836022233]
+rotation = -1.5707964
+script = ExtResource("1_iysnv")

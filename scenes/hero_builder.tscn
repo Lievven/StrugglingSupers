@@ -85,6 +85,7 @@ drag_controller = NodePath("../DragController")
 [node name="DebugController" type="Node2D" parent="SpawnController" unique_id=1335336285 node_paths=PackedStringArray("spawn_controller")]
 script = ExtResource("5_kapho")
 spawn_controller = NodePath("..")
+drag_reload_factor = 0.4
 
 [node name="BasePart" parent="." unique_id=1069959148 instance=ExtResource("1_0q20k")]
 visible = false
