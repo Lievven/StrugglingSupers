@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://doacsshhnggmu"]
+
+[ext_resource type="PackedScene" uid="uid://b8vwwp55x6wv7" path="res://scenes/components/drag_springs.tscn" id="1_j6ind"]
+[ext_resource type="Script" uid="uid://1co8uj5urcgl" path="res://scenes/parts/bull_head.gd" id="2_j6ind"]
+[ext_resource type="Texture2D" uid="uid://dhmbvfuwo6uro" path="res://assets/bull_head_1.png" id="3_pjk8o"]
+[ext_resource type="Texture2D" uid="uid://boawesuo7s1cb" path="res://assets/bull_head_2.png" id="4_j6ind"]
+[ext_resource type="PackedScene" uid="uid://dc2xr4b341wrp" path="res://scenes/components/damage_component.tscn" id="5_pjk8o"]
+[ext_resource type="Script" uid="uid://c0f53s028ni0j" path="res://scenes/components/animated_component.gd" id="6_0dc54"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_poi2y"]
+radius = 17.0
+height = 58.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_56ckt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_pjk8o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_j6ind")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_j6ind"]
+radius = 26.0
+height = 72.0
+
+[node name="CharacterBody2D" unique_id=1686936239 node_paths=PackedStringArray("attached_target") instance=ExtResource("1_j6ind")]
+attached_target = NodePath("RigidBody2D")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="." index="5" unique_id=49937301 node_paths=PackedStringArray("damage_component")]
+z_index = -1
+position = Vector2(0, 12)
+collision_layer = 512
+mass = 0.5
+script = ExtResource("2_j6ind")
+damage_component = NodePath("DamageComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D" index="0" unique_id=2006964656]
+position = Vector2(0, -46)
+shape = SubResource("CapsuleShape2D_poi2y")
+
+[node name="AnimatedComponent" type="AnimatedSprite2D" parent="RigidBody2D" index="1" unique_id=1132863121]
+position = Vector2(0, -51)
+sprite_frames = SubResource("SpriteFrames_56ckt")
+frame_progress = 0.04905814
+script = ExtResource("6_0dc54")
+metadata/_custom_type_script = "uid://c0f53s028ni0j"
+
+[node name="DamageComponent" parent="RigidBody2D" index="2" unique_id=1322757197 instance=ExtResource("5_pjk8o")]
+collision_layer = 65536
+collision_mask = 65536
+damage_delay_timer = 3.0
+damage_amount = 30
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="RigidBody2D/DamageComponent" index="0" unique_id=359776586]
+position = Vector2(-1, -53)
+shape = SubResource("CapsuleShape2D_j6ind")

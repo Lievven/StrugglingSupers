@@ -1,0 +1,147 @@
+[gd_scene format=3 uid="uid://bqpa5e1lv1m7j"]
+
+[ext_resource type="Texture2D" uid="uid://ccvixbmohreqx" path="res://assets/body_1.png" id="1_p84e3"]
+[ext_resource type="Texture2D" uid="uid://dr86o6srpabs0" path="res://assets/head_1.png" id="2_35xrs"]
+[ext_resource type="Texture2D" uid="uid://xsxny1wx678o" path="res://assets/upper_arm_1.png" id="4_6u5ov"]
+[ext_resource type="Texture2D" uid="uid://3ypl8lj71qmc" path="res://assets/leg_1.png" id="5_htdo2"]
+[ext_resource type="Texture2D" uid="uid://dsr8imnteb2w6" path="res://assets/saw_1.png" id="7_cxk03"]
+[ext_resource type="Texture2D" uid="uid://rcvservx5ugb" path="res://assets/saw_holder_1.png" id="8_lef8a"]
+
+[sub_resource type="SystemFont" id="SystemFont_k4a0x"]
+
+[sub_resource type="Theme" id="Theme_38do4"]
+default_font = SubResource("SystemFont_k4a0x")
+default_font_size = 50
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pykqj"]
+
+[node name="Screenshot" type="Node2D" unique_id=2085578496]
+
+[node name="ReferenceRect" type="ReferenceRect" parent="." unique_id=1215783072]
+offset_left = 32.0
+offset_top = 25.0
+offset_right = 662.0
+offset_bottom = 525.0
+editor_only = false
+
+[node name="TextEdit" type="Label" parent="ReferenceRect" unique_id=1666098785]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -221.0
+offset_right = 221.0
+offset_bottom = 205.0
+grow_horizontal = 2
+theme = SubResource("Theme_38do4")
+theme_override_styles/normal = SubResource("StyleBoxTexture_pykqj")
+text = "Struggling Supers"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Hero1" type="Sprite2D" parent="." unique_id=1717566996]
+position = Vector2(189.00002, 338.00003)
+rotation = 0.19384052
+texture = ExtResource("1_p84e3")
+
+[node name="Head" type="Sprite2D" parent="Hero1" unique_id=2136474603]
+position = Vector2(6.7332354, -72.25417)
+rotation = -0.17773834
+texture = ExtResource("2_35xrs")
+
+[node name="Leg" type="Sprite2D" parent="Hero1" unique_id=1423767629]
+position = Vector2(-24.327803, 57.76814)
+rotation = 0.37161994
+texture = ExtResource("5_htdo2")
+
+[node name="Leg2" type="Sprite2D" parent="Hero1" unique_id=1237559589]
+position = Vector2(16.302237, 62.539886)
+rotation = 0.19591907
+texture = ExtResource("5_htdo2")
+
+[node name="UpperArm" type="Sprite2D" parent="Hero1" unique_id=1224996914]
+position = Vector2(-23.999954, -15)
+rotation = -0.6543211
+scale = Vector2(1.0000001, 1.0000001)
+texture = ExtResource("4_6u5ov")
+
+[node name="LowerArm" type="Sprite2D" parent="Hero1/UpperArm" unique_id=1547276715]
+position = Vector2(16.105711, 39.53411)
+rotation = -1.0355219
+texture = ExtResource("5_htdo2")
+
+[node name="UpperArm2" type="Sprite2D" parent="Hero1" unique_id=239168003]
+position = Vector2(54.999992, -23.999996)
+rotation = -1.2002997
+scale = Vector2(1.0000001, 1.0000001)
+texture = ExtResource("4_6u5ov")
+
+[node name="Saw" type="Sprite2D" parent="Hero1/UpperArm2" unique_id=1113515762]
+position = Vector2(50.586296, 30.51598)
+rotation = 1.0850136
+scale = Vector2(0.9999997, 0.9999997)
+texture = ExtResource("7_cxk03")
+
+[node name="LowerArm" type="Sprite2D" parent="Hero1/UpperArm2" unique_id=577920292]
+position = Vector2(20.074326, 26.270935)
+rotation = -1.5161282
+scale = Vector2(0.99999994, 0.9999998)
+texture = ExtResource("8_lef8a")
+
+[node name="Hero2" type="Sprite2D" parent="." unique_id=639466341]
+position = Vector2(505.99997, 346)
+rotation = -1.0570366
+texture = ExtResource("1_p84e3")
+
+[node name="UpperArm3" type="Sprite2D" parent="Hero2" unique_id=400216315]
+position = Vector2(-30.6805, 31.091919)
+rotation = 1.5585771
+scale = Vector2(0.907234, 0.8178541)
+texture = ExtResource("4_6u5ov")
+
+[node name="LowerArm" type="Sprite2D" parent="Hero2/UpperArm3" unique_id=1605654510]
+position = Vector2(13.399436, 31.776398)
+rotation = -1.0355219
+scale = Vector2(1.0391246, 0.7650011)
+texture = ExtResource("5_htdo2")
+
+[node name="UpperArm4" type="Sprite2D" parent="Hero2" unique_id=2068595466]
+position = Vector2(-52.665695, -32.28514)
+rotation = 1.6627393
+scale = Vector2(0.907234, 0.8178541)
+texture = ExtResource("4_6u5ov")
+
+[node name="LowerArm" type="Sprite2D" parent="Hero2/UpperArm4" unique_id=1213574929]
+position = Vector2(13.399436, 31.776398)
+rotation = -1.0355219
+scale = Vector2(1.0391246, 0.7650011)
+texture = ExtResource("5_htdo2")
+
+[node name="UpperArm2" type="Sprite2D" parent="Hero2" unique_id=637084963]
+position = Vector2(43.04226, 45.75324)
+rotation = -1.2002997
+scale = Vector2(1.0000001, 1.0000001)
+texture = ExtResource("4_6u5ov")
+
+[node name="Saw" type="Sprite2D" parent="Hero2/UpperArm2" unique_id=670301495]
+position = Vector2(50.586296, 30.51598)
+rotation = 1.0850136
+scale = Vector2(0.9999997, 0.9999997)
+texture = ExtResource("7_cxk03")
+
+[node name="LowerArm" type="Sprite2D" parent="Hero2/UpperArm2" unique_id=120317931]
+position = Vector2(20.074326, 26.270935)
+rotation = -1.5161282
+scale = Vector2(0.99999994, 0.9999998)
+texture = ExtResource("8_lef8a")
+
+[node name="Head" type="Sprite2D" parent="Hero2" unique_id=850468271]
+position = Vector2(39.631744, -57.959717)
+rotation = 0.93900955
+scale = Vector2(1.0000001, 1.0000001)
+texture = ExtResource("2_35xrs")
+
+[node name="Head2" type="Sprite2D" parent="Hero2" unique_id=44517450]
+position = Vector2(0.9508209, -61.393005)
+rotation = 0.88523406
+texture = ExtResource("2_35xrs")

@@ -2,10 +2,19 @@
 
 [ext_resource type="Texture2D" uid="uid://dsr8imnteb2w6" path="res://assets/saw_1.png" id="1_l6gxx"]
 [ext_resource type="Script" uid="uid://ddmolsw0d56sn" path="res://scripts/part_button.gd" id="2_lbg37"]
+[ext_resource type="PackedScene" uid="uid://cjvgwc4hyrg6f" path="res://scenes/part_label.tscn" id="3_lbg37"]
 
 [node name="PartButton" type="Button" unique_id=1353554395]
-text = "1"
+custom_minimum_size = Vector2(50, 50)
+size_flags_horizontal = 3
 icon = ExtResource("1_l6gxx")
+alignment = 2
+icon_alignment = 1
+expand_icon = true
 script = ExtResource("2_lbg37")
+text_label = ExtResource("3_lbg37")
 
+[connection signal="button_down" from="." to="." method="_on_button_down"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
 [connection signal="pressed" from="." to="." method="_on_pressed"]

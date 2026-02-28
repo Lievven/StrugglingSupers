@@ -2,10 +2,28 @@
 
 [ext_resource type="PackedScene" uid="uid://b8vwwp55x6wv7" path="res://scenes/components/drag_springs.tscn" id="1_6auv7"]
 [ext_resource type="Texture2D" uid="uid://dr86o6srpabs0" path="res://assets/head_1.png" id="2_0cfxs"]
+[ext_resource type="PackedScene" uid="uid://brxbd6bkkqt8p" path="res://scenes/components/floating_component.tscn" id="3_6auv7"]
+[ext_resource type="Texture2D" uid="uid://df8q3gr7ompoi" path="res://assets/air_head_1.png" id="4_brmy2"]
+[ext_resource type="Texture2D" uid="uid://blhi2ff13rbxl" path="res://assets/air_head_2.png" id="5_bfsuh"]
+[ext_resource type="Script" uid="uid://c0f53s028ni0j" path="res://scenes/components/animated_component.gd" id="6_wsk02"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_poi2y"]
 radius = 17.0
 height = 58.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rjlif"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_brmy2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_bfsuh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="CharacterBody2D" unique_id=1686936239 node_paths=PackedStringArray("attached_target") instance=ExtResource("1_6auv7")]
 attached_target = NodePath("RigidBody2D")
@@ -18,9 +36,19 @@ mass = 3.0
 gravity_scale = -1.0
 
 [node name="Sprite2D" type="Sprite2D" parent="RigidBody2D" index="0" unique_id=352156634]
+visible = false
 position = Vector2(0, -46)
 texture = ExtResource("2_0cfxs")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D" index="1" unique_id=2006964656]
 position = Vector2(0, -46)
 shape = SubResource("CapsuleShape2D_poi2y")
+
+[node name="FloatingComponent" parent="RigidBody2D" index="2" unique_id=1562462942 node_paths=PackedStringArray("target_body") instance=ExtResource("3_6auv7")]
+target_body = NodePath("..")
+
+[node name="AnimatedComponent" type="AnimatedSprite2D" parent="RigidBody2D" index="3" unique_id=1132863121]
+position = Vector2(2, -47)
+sprite_frames = SubResource("SpriteFrames_rjlif")
+script = ExtResource("6_wsk02")
+metadata/_custom_type_script = "uid://c0f53s028ni0j"

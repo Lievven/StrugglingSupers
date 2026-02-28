@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://b78425biq0lma"]
+
+[sub_resource type="GDScript" id="GDScript_7mfd4"]
+resource_name = "angular_impulse_component"
+script/source = "extends Timer
+
+@export var angular_parent: Joint2D
+@export var target_limb: RigidBody2D
+@export var random_direction: bool = false
+
+func _ready() -> void:
+	main_ui.connect(\"start_battle\", start_battle)
+
+func start_battle():
+	start()
+
+
+func _on_timeout() -> void:
+	var direction = 1
+	if random_direction:
+		direction = [-1, 1].pick_random()
+	target_limb.apply_torque_impulse(angular_parent.physics_force * direction)
+"
+
+[node name="AngularComponent" type="Timer" unique_id=1875514875]
+script = SubResource("GDScript_7mfd4")
+
+[connection signal="timeout" from="." to="." method="_on_timeout"]

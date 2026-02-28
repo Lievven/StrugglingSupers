@@ -2,32 +2,60 @@
 
 [ext_resource type="PackedScene" uid="uid://cq522q5rssv3t" path="res://scenes/components/drag_joint.tscn" id="1_g3esy"]
 [ext_resource type="PackedScene" uid="uid://xvt44y57romm" path="res://scenes/parts/base_limb.tscn" id="3_cskld"]
+[ext_resource type="Texture2D" uid="uid://ll1f8021kycl" path="res://assets/saw_holder_2.png" id="4_7wnaf"]
 [ext_resource type="Texture2D" uid="uid://rcvservx5ugb" path="res://assets/saw_holder_1.png" id="4_g3esy"]
 [ext_resource type="PackedScene" uid="uid://cqqil8qjg2vgt" path="res://scenes/parts/saw_head.tscn" id="5_3m7u8"]
-[ext_resource type="PackedScene" uid="uid://dc2xr4b341wrp" path="res://scenes/components/DamageComponent.tscn" id="5_ihyv7"]
+[ext_resource type="PackedScene" uid="uid://dc2xr4b341wrp" path="res://scenes/components/damage_component.tscn" id="5_ihyv7"]
+[ext_resource type="Script" uid="uid://c0f53s028ni0j" path="res://scenes/components/animated_component.gd" id="5_jw8c1"]
+[ext_resource type="PackedScene" uid="uid://b78425biq0lma" path="res://scenes/components/angular__impulse_component.tscn" id="6_ihyv7"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1qws5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_7wnaf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_g3esy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3m7u8"]
 radius = 18.0
 
 [node name="DragJoint" unique_id=518220694 instance=ExtResource("1_g3esy")]
 node_b = NodePath("BaseLimb")
+physics_force = 5000.0
 
 [node name="BaseLimb" parent="." index="1" unique_id=923943070 instance=ExtResource("3_cskld")]
 position = Vector2(-1, 22)
+mass = 0.5
 
 [node name="RigidBody2D" type="RigidBody2D" parent="BaseLimb" index="2" unique_id=1447447988]
 position = Vector2(-2, 46)
 collision_layer = 4
 collision_mask = 3
+mass = 0.4
 
-[node name="Sprite2D" type="Sprite2D" parent="BaseLimb/RigidBody2D" index="0" unique_id=573944840]
+[node name="AnimatedComponent" type="AnimatedSprite2D" parent="BaseLimb/RigidBody2D" index="0" unique_id=1759020659]
+sprite_frames = SubResource("SpriteFrames_1qws5")
+frame_progress = 0.21295922
+script = ExtResource("5_jw8c1")
+metadata/_custom_type_script = "uid://c0f53s028ni0j"
+
+[node name="Sprite2D" type="Sprite2D" parent="BaseLimb/RigidBody2D" index="1" unique_id=573944840]
+visible = false
 texture = ExtResource("4_g3esy")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BaseLimb/RigidBody2D" index="1" unique_id=267613300]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BaseLimb/RigidBody2D" index="2" unique_id=267613300]
 polygon = PackedVector2Array(-3, -32, 7, -32, 13, -26, 8, 11, 2, 13, -6, 13, -10, 11, -8, -28)
 
-[node name="SawComponent" parent="BaseLimb/RigidBody2D" index="2" unique_id=1536316582 instance=ExtResource("5_3m7u8")]
+[node name="SawComponent" parent="BaseLimb/RigidBody2D" index="3" unique_id=1536316582 instance=ExtResource("5_3m7u8")]
 position = Vector2(-3, 30)
+mass = 0.1
 
 [node name="DamageComponent" parent="BaseLimb/RigidBody2D/SawComponent" index="2" unique_id=1322757197 instance=ExtResource("5_ihyv7")]
 collision_layer = 65536
@@ -38,7 +66,7 @@ damage_amount = 1
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BaseLimb/RigidBody2D/SawComponent/DamageComponent" index="0" unique_id=2049505882]
 shape = SubResource("CircleShape2D_3m7u8")
 
-[node name="PinJoint2D" type="PinJoint2D" parent="BaseLimb/RigidBody2D" index="3" unique_id=357069679]
+[node name="PinJoint2D" type="PinJoint2D" parent="BaseLimb/RigidBody2D" index="4" unique_id=357069679]
 position = Vector2(-3, 30)
 node_a = NodePath("..")
 node_b = NodePath("../SawComponent")
@@ -47,3 +75,9 @@ node_b = NodePath("../SawComponent")
 position = Vector2(-1, 22)
 node_a = NodePath("..")
 node_b = NodePath("../RigidBody2D")
+
+[node name="AngularComponent" parent="." index="2" unique_id=1875514875 node_paths=PackedStringArray("angular_parent", "target_limb") instance=ExtResource("6_ihyv7")]
+wait_time = 2.0
+angular_parent = NodePath("..")
+target_limb = NodePath("../BaseLimb")
+random_direction = true

@@ -54,11 +54,13 @@ func remove_limb(slot_id: int):
 	slots[slot_id] = null
 	
 
-func fill_limb_slot(limb_id: int, pos: Vector2, button):
+func fill_limb_slot(limb_id: int, pos: Vector2, button, instant_drag: bool = false):
 	for i in range(slots.size()):
 		if not slots[i] == null:
 			continue
 		spawn_limb(limb_id, i, pos, button)
+		if instant_drag:
+			drag_controller.set_draggable(slots[i])
 		return i
 	
 	return -1

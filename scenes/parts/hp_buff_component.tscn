@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://4ttnypcae4gd"]
+
+[ext_resource type="Script" uid="uid://cjdxl5v3tbesh" path="res://scenes/parts/hp_buff_component.gd" id="1_c1poy"]
+
+[node name="HpBuffComponent" type="Node2D" unique_id=1841526219]
+script = ExtResource("1_c1poy")

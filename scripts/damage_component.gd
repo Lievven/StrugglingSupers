@@ -1,6 +1,7 @@
 extends Area2D
 class_name DamageComponent
 
+signal damage_dealt
 
 @export var free_on_damage: Node2D = null
 @export var damage_delay_timer: float = 0
@@ -8,15 +9,16 @@ class_name DamageComponent
 @export var damage_player: bool = false
 
 var delay_timer = 0
-var target_count = 0
+var bodies = []
 
 func _physics_process(delta: float) -> void:
 	if delay_timer > 0:
 		delay_timer -= delta
 		return
-	if target_count <= 0:
+	if bodies.size() <= 0:
 		return
 	
+	damage_dealt.emit(bodies[0])
 	delay_timer = damage_delay_timer
 	if damage_player:
 		main_ui.damage_player(damage_amount)
@@ -37,8 +39,12 @@ func set_target(is_target_player: bool = false):
 
 
 func _on_body_entered(body: Node2D) -> void:
-	target_count += 1
+	if body.has_method("damage_collision"):
+		if not body.damage_collision(get_parent()):
+			return
+	bodies.append(body)
+	
 
 
 func _on_body_exited(body: Node2D) -> void:
-	target_count -= 1
+	bodies.erase(body)

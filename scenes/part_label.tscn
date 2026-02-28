@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://cjvgwc4hyrg6f"]
+
+[node name="PartLabel" type="RichTextLabel" unique_id=727339904]
+offset_right = 1.0
+offset_bottom = 100.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "Default
+[b]Default Bold[/b]
+[i]Default Italic[/i]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0

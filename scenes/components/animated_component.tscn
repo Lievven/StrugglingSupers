@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://bvg5tm3wax42w"]
+
+[ext_resource type="Texture2D" uid="uid://ccvixbmohreqx" path="res://assets/body_1.png" id="1_40e8w"]
+[ext_resource type="Texture2D" uid="uid://naxc7vqhdseg" path="res://assets/body_2.png" id="2_6f0lb"]
+[ext_resource type="Script" uid="uid://c0f53s028ni0j" path="res://scenes/components/animated_component.gd" id="3_6f0lb"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m6te6"]
+resource_name = "Body"
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_40e8w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_6f0lb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Anim" type="AnimatedSprite2D" unique_id=1931902286]
+sprite_frames = SubResource("SpriteFrames_m6te6")
+frame = 1
+frame_progress = 0.11770877
+script = ExtResource("3_6f0lb")

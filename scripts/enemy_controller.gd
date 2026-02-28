@@ -13,7 +13,7 @@ func _ready() -> void:
 
 
 func reset_game():
-	enemy_index = 0
+	enemy_index = -1
 
 func reset_level(won: bool):
 	if won:

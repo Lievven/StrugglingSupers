@@ -16,6 +16,9 @@ position = Vector2(-27.999992, -27)
 rotation = -0.29484135
 base_target = NodePath("../BasePart")
 
+[node name="FloatingComponent" parent="CharacterBody2D/RigidBody2D" parent_id_path=PackedInt32Array(1686936239, 49937301) index="2" unique_id=1562462942]
+maximum_weight = 1.5
+
 [node name="DragJoint3" parent="." unique_id=738717443 node_paths=PackedStringArray("base_target") instance=ExtResource("5_2n5he")]
 position = Vector2(-42.000008, 31.000004)
 rotation = 1.6444396
@@ -24,7 +27,7 @@ base_target = NodePath("../BasePart")
 [node name="BaseLimb" parent="DragJoint3" index="1" unique_id=923943070]
 collision_layer = 0
 
-[node name="SawComponent" parent="DragJoint3/BaseLimb/RigidBody2D" parent_id_path=PackedInt32Array(738717443, 1447447988) index="2" unique_id=1536316582]
+[node name="SawComponent" parent="DragJoint3/BaseLimb/RigidBody2D" parent_id_path=PackedInt32Array(738717443, 1447447988) index="3" unique_id=1536316582]
 collision_layer = 0
 
 [node name="DamageComponent" parent="DragJoint3/BaseLimb/RigidBody2D/SawComponent" index="2" unique_id=1322757197]
@@ -40,7 +43,7 @@ base_target = NodePath("../BasePart")
 [node name="BaseLimb" parent="DragJoint4" index="1" unique_id=923943070]
 collision_layer = 0
 
-[node name="SawComponent" parent="DragJoint4/BaseLimb/RigidBody2D" parent_id_path=PackedInt32Array(518220694, 1447447988) index="2" unique_id=1536316582]
+[node name="SawComponent" parent="DragJoint4/BaseLimb/RigidBody2D" parent_id_path=PackedInt32Array(518220694, 1447447988) index="3" unique_id=1536316582]
 collision_layer = 0
 
 [node name="DamageComponent" parent="DragJoint4/BaseLimb/RigidBody2D/SawComponent" index="2" unique_id=1322757197]
@@ -48,5 +51,6 @@ collision_layer = 0
 collision_mask = 256
 damage_player = true
 
+[editable path="CharacterBody2D"]
 [editable path="DragJoint3"]
 [editable path="DragJoint4"]

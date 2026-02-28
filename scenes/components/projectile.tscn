@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bbbughheh03i2" path="res://assets/joint.png" id="1_ae8u7"]
 [ext_resource type="Script" uid="uid://fx75ltb27bis" path="res://scripts/projectile.gd" id="1_im1d0"]
-[ext_resource type="PackedScene" uid="uid://dc2xr4b341wrp" path="res://scenes/components/DamageComponent.tscn" id="3_c6x4h"]
+[ext_resource type="PackedScene" uid="uid://dc2xr4b341wrp" path="res://scenes/components/damage_component.tscn" id="3_c6x4h"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c6x4h"]
 

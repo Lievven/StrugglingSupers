@@ -1,9 +1,43 @@
 [gd_scene format=3 uid="uid://dmdvtnxhoabnw"]
 
 [ext_resource type="PackedScene" uid="uid://cq522q5rssv3t" path="res://scenes/components/drag_joint.tscn" id="1_17waf"]
+[ext_resource type="Texture2D" uid="uid://ban3mjntuto61" path="res://assets/rocket_leg_1.png" id="2_imk68"]
 [ext_resource type="Texture2D" uid="uid://3ypl8lj71qmc" path="res://assets/leg_1.png" id="2_ksfmv"]
 [ext_resource type="PackedScene" uid="uid://b8erbv6tgi7rs" path="res://scenes/components/impulse_component.tscn" id="3_8v1c3"]
+[ext_resource type="Texture2D" uid="uid://cxy151kimcfy1" path="res://assets/rocket_leg_2.png" id="3_svww1"]
 [ext_resource type="PackedScene" uid="uid://cmp7nfoakbf16" path="res://scenes/components/aiming_component.tscn" id="4_8v1c3"]
+[ext_resource type="Script" uid="uid://b1fly1rsm13on" path="res://scenes/parts/plume_animation.gd" id="4_8yimm"]
+[ext_resource type="Script" uid="uid://c0f53s028ni0j" path="res://scenes/components/animated_component.gd" id="4_ik06g"]
+[ext_resource type="Texture2D" uid="uid://b26ukh4dqr0mr" path="res://assets/rocket_plume_2.png" id="8_ik06g"]
+[ext_resource type="Texture2D" uid="uid://chl6ngmryw476" path="res://assets/rocket_plume_1.png" id="9_8yimm"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_khm3c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_8yimm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_ik06g")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8yimm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_imk68")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_svww1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8v1c3"]
 height = 74.0
@@ -18,20 +52,42 @@ position = Vector2(-2, 92)
 collision_layer = 512
 angular_damp = 1.0
 
-[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D" index="0" unique_id=562422721]
+[node name="PlumeAnimation" type="AnimatedSprite2D" parent="RigidBody2D" index="0" unique_id=1865106016 node_paths=PackedStringArray("impulse_component", "timer")]
+visible = false
+position = Vector2(0, -30)
+sprite_frames = SubResource("SpriteFrames_khm3c")
+frame_progress = 0.9156818
+script = ExtResource("4_8yimm")
+impulse_component = NodePath("../ImpulseComponent")
+timer = NodePath("Timer")
+metadata/_custom_type_script = "uid://c0f53s028ni0j"
+
+[node name="Timer" type="Timer" parent="RigidBody2D/PlumeAnimation" index="0" unique_id=363640144]
+wait_time = 0.5
+one_shot = true
+
+[node name="AnimatedComponent" type="AnimatedSprite2D" parent="RigidBody2D" index="1" unique_id=1126074277]
+position = Vector2(0, -66)
+sprite_frames = SubResource("SpriteFrames_8yimm")
+script = ExtResource("4_ik06g")
+metadata/_custom_type_script = "uid://c0f53s028ni0j"
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D" index="2" unique_id=562422721]
+visible = false
 position = Vector2(0, -67)
 texture = ExtResource("2_ksfmv")
 
-[node name="CollisionPolygon2D" type="CollisionShape2D" parent="RigidBody2D" index="1" unique_id=481474648]
+[node name="CollisionPolygon2D" type="CollisionShape2D" parent="RigidBody2D" index="3" unique_id=481474648]
 position = Vector2(1, -66)
 shape = SubResource("CapsuleShape2D_8v1c3")
 
-[node name="ImpulseComponent" parent="RigidBody2D" index="2" unique_id=1134326734 instance=ExtResource("3_8v1c3")]
-position = Vector2(2, -91)
-impulse_force = 600.0
-impulse_delay = 2.0
-
-[node name="AimingComponent" parent="RigidBody2D" index="3" unique_id=836022233 node_paths=PackedStringArray("aiming_part", "joint") instance=ExtResource("4_8v1c3")]
+[node name="AimingComponent" parent="RigidBody2D" index="4" unique_id=836022233 node_paths=PackedStringArray("aiming_part", "joint") instance=ExtResource("4_8v1c3")]
 position = Vector2(2, -92)
 aiming_part = NodePath("..")
 joint = NodePath("../..")
+
+[node name="ImpulseComponent" parent="RigidBody2D" index="5" unique_id=1134326734 instance=ExtResource("3_8v1c3")]
+impulse_force = 400.0
+impulse_delay = 2.0
+
+[connection signal="timeout" from="RigidBody2D/PlumeAnimation/Timer" to="RigidBody2D/PlumeAnimation" method="impulse_ends"]

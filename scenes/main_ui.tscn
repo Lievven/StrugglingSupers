@@ -3,6 +3,15 @@
 [ext_resource type="Script" uid="uid://coexxto3ckoja" path="res://scripts/main_ui.gd" id="1_fnul3"]
 [ext_resource type="Script" uid="uid://cssb26qnqodbr" path="res://scripts/inventory.gd" id="2_e6fyy"]
 [ext_resource type="PackedScene" uid="uid://ccvxgc2a72ldb" path="res://scenes/part_button.tscn" id="3_scoti"]
+[ext_resource type="Texture2D" uid="uid://ccvixbmohreqx" path="res://assets/body_1.png" id="4_okuri"]
+[ext_resource type="Texture2D" uid="uid://dsr8imnteb2w6" path="res://assets/saw_1.png" id="5_kyx1g"]
+[ext_resource type="Texture2D" uid="uid://b0dbkqor16ss3" path="res://assets/shield_arm_1.png" id="6_r0apq"]
+[ext_resource type="Texture2D" uid="uid://djk8ukr2oiubu" path="res://assets/rocket_leg_icon.png" id="7_82kx8"]
+[ext_resource type="Texture2D" uid="uid://3ypl8lj71qmc" path="res://assets/leg_1.png" id="7_r0apq"]
+[ext_resource type="Texture2D" uid="uid://dr86o6srpabs0" path="res://assets/head_1.png" id="8_82kx8"]
+[ext_resource type="Texture2D" uid="uid://df8q3gr7ompoi" path="res://assets/air_head_1.png" id="9_kyx1g"]
+[ext_resource type="Texture2D" uid="uid://dhmbvfuwo6uro" path="res://assets/bull_head_1.png" id="10_r8eje"]
+[ext_resource type="Texture2D" uid="uid://djedh4honmuuo" path="res://assets/sixpack_1.png" id="12_82kx8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j6a7c"]
 bg_color = Color(0.7921569, 0.21176471, 0.24313726, 1)
@@ -11,13 +20,13 @@ bg_color = Color(0.7921569, 0.21176471, 0.24313726, 1)
 bg_color = Color(0.28235295, 0.7411765, 0.3254902, 1)
 
 [node name="MainUi" type="Control" unique_id=2067656458 node_paths=PackedStringArray("inventory", "player_hp_label", "enemy_hp_label", "lives_label", "time_display")]
-custom_minimum_size = Vector2(100, 100)
+z_index = 100
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 1.0
-offset_top = 67.0
+offset_top = 57.0
 offset_right = 1.0
 offset_bottom = -80.0
 grow_horizontal = 2
@@ -33,52 +42,46 @@ lives_label = NodePath("VBoxContainer/Lives")
 level_time = 60
 time_display = NodePath("VBoxContainer/TimeRemaining")
 
-[node name="StartButton" type="Button" parent="." unique_id=1479893514]
+[node name="ControlButtons" type="VBoxContainer" parent="." unique_id=1224370802]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -111.0
-offset_bottom = 67.0
+offset_left = -165.0
+offset_top = -32.0
+offset_right = -42.0
+offset_bottom = 34.0
 grow_horizontal = 0
+
+[node name="StartButton" type="Button" parent="ControlButtons" unique_id=1479893514]
+layout_mode = 2
+size_flags_vertical = 3
 text = "Start"
 
-[node name="AddLimbButton" type="Button" parent="." unique_id=1950210347]
+[node name="AddLimbButton" type="Button" parent="ControlButtons" unique_id=1950210347]
 visible = false
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -109.0
-offset_top = 80.0
-offset_right = 1.0
-offset_bottom = 144.0
-grow_horizontal = 0
+layout_mode = 2
 text = "Spawn"
 
-[node name="TeleportButton" type="Button" parent="." unique_id=1728896600]
+[node name="TeleportButton" type="Button" parent="ControlButtons" unique_id=1728896600]
 visible = false
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -106.0
-offset_top = 159.0
-offset_right = 1.0
-offset_bottom = 221.0
-grow_horizontal = 0
-text = "Teleport"
+layout_mode = 2
+text = "Reset Scene"
 
-[node name="Inventory" type="HBoxContainer" parent="." unique_id=1802377630]
+[node name="Inventory" type="HBoxContainer" parent="." unique_id=1802377630 node_paths=PackedStringArray("new_parts_label")]
 layout_mode = 0
 offset_left = 888.0
-offset_top = -8.0
+offset_top = -42.0
 offset_right = 1015.0
 offset_bottom = 321.0
 script = ExtResource("2_e6fyy")
 part_button_scene = ExtResource("3_scoti")
+part_icons = Array[Texture2D]([ExtResource("4_okuri"), ExtResource("5_kyx1g"), ExtResource("6_r0apq"), ExtResource("7_82kx8"), ExtResource("7_r0apq"), ExtResource("8_82kx8"), ExtResource("9_kyx1g"), ExtResource("10_r8eje"), ExtResource("12_82kx8")])
+part_labels = Array[String](["Body", "[b]Saw Arm[/b] [br] Deals constant damage on contact.", "[b]Shield[/b][br]Deflects melee attacks and projectiles.", "[b]Rocket Leg[/b][br]Pushes you towards the enemy every few seconds.", "[b]Spinning Leg[/b][br]Constantly walks forwards.", "[b]Laser Eyes[/b][br]Shoots deadly lasers.", "[b]Airhead[/b][br]The hot air inside makes you float.", "[b]Bull Head[/b][br]Has a devastating melee strike on a long cooldown.", "[b]Epic Six Pack[/b][br]Reduces damage taken."])
+new_parts_label = NodePath("ReserveParts/NewPartsLabel")
 
 [node name="ActiveParts" type="VBoxContainer" parent="Inventory" unique_id=1122580436]
+visible = false
 layout_mode = 2
 
 [node name="Label" type="Label" parent="Inventory/ActiveParts" unique_id=2004741556]
@@ -94,6 +97,10 @@ text = "Inventory"
 
 [node name="PartButton" parent="Inventory/ReserveParts" unique_id=1353554395 instance=ExtResource("3_scoti")]
 layout_mode = 2
+
+[node name="NewPartsLabel" type="Label" parent="Inventory/ReserveParts" unique_id=1836357332]
+layout_mode = 2
+text = "New Parts"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1245067444]
 layout_mode = 0
@@ -138,9 +145,9 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 100
 text = "You Win"
 
-[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="AddLimbButton" to="." method="_on_add_limb_button_pressed"]
-[connection signal="pressed" from="TeleportButton" to="." method="_on_teleport_button_pressed"]
+[connection signal="pressed" from="ControlButtons/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="ControlButtons/AddLimbButton" to="." method="_on_add_limb_button_pressed"]
+[connection signal="pressed" from="ControlButtons/TeleportButton" to="." method="_on_teleport_button_pressed"]
 [connection signal="part_button_pressed" from="Inventory/ReserveParts/PartButton" to="Inventory" method="_on_part_button_pressed"]
 [connection signal="gui_input" from="GameOutcomeButton" to="GameOutcomeButton" method="_on_gui_input"]
 [connection signal="pressed" from="GameOutcomeButton" to="." method="_on_game_outcome_button_pressed"]

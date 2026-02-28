@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dhwrv6bnbx2uq" path="res://scripts/base_part.gd" id="1_a7mix"]
 [ext_resource type="Texture2D" uid="uid://ccvixbmohreqx" path="res://assets/body_1.png" id="2_bvwml"]
+[ext_resource type="PackedScene" uid="uid://bvg5tm3wax42w" path="res://scenes/components/animated_component.tscn" id="3_53ex2"]
 
 [node name="BasePart" type="RigidBody2D" unique_id=923943070]
 collision_layer = 256
@@ -12,7 +13,10 @@ angular_damp = 5.0
 script = ExtResource("1_a7mix")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=411443742]
+visible = false
 texture = ExtResource("2_bvwml")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1078439702]
 polygon = PackedVector2Array(-43, -40, 44, -41, 22, 40, -17, 41)
+
+[node name="Anim" parent="." unique_id=1931902286 instance=ExtResource("3_53ex2")]

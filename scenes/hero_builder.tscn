@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://d0bbnb3bw0dgm" path="res://scenes/parts/laser_head.tscn" id="7_sdn56"]
 [ext_resource type="PackedScene" uid="uid://dxfs6l2oo3n5x" path="res://scenes/parts/air_head.tscn" id="8_e4wf8"]
 [ext_resource type="Script" uid="uid://cmatgtibn37ok" path="res://scripts/enemy_controller.gd" id="10_n27oi"]
+[ext_resource type="PackedScene" uid="uid://crg5oieqlw4kg" path="res://scenes/parts/sixpack.tscn" id="11_evkmt"]
 [ext_resource type="PackedScene" uid="uid://cw818tusgtaok" path="res://scenes/enemies/bull.tscn" id="11_kdm3m"]
 [ext_resource type="PackedScene" uid="uid://b73vnojnkvra4" path="res://scenes/enemies/slug.tscn" id="11_uof3y"]
 [ext_resource type="PackedScene" uid="uid://776rhrw7t0dy" path="res://scenes/enemies/tortoise.tscn" id="13_6lsvn"]
@@ -17,9 +18,11 @@
 [ext_resource type="PackedScene" uid="uid://b5llotvcfd0ph" path="res://scenes/enemies/flying_pig.tscn" id="15_i7okk"]
 [ext_resource type="PackedScene" uid="uid://c8r42mb385xm6" path="res://scenes/enemies/laser_hydra.tscn" id="16_xko0f"]
 [ext_resource type="PackedScene" uid="uid://dsfuafj250dxj" path="res://scenes/enemies/flying_hydra.tscn" id="17_wt3gg"]
+[ext_resource type="PackedScene" uid="uid://doacsshhnggmu" path="res://scenes/parts/bull_head.tscn" id="18_wt3gg"]
+[ext_resource type="PackedScene" uid="uid://cvudfjgrdkhy7" path="res://scenes/parts/shield_arm.tscn" id="19_sh4ki"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0q20k"]
-size = Vector2(1369, 92.5)
+size = Vector2(1949, 565.25)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lrsw3"]
 size = Vector2(425, 881)
@@ -27,27 +30,28 @@ size = Vector2(425, 881)
 [node name="HeroBuilder" type="Node2D" unique_id=408255002]
 
 [node name="Bottom" type="StaticBody2D" parent="." unique_id=1690625894]
-position = Vector2(49, 54)
+position = Vector2(58, 294)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bottom" unique_id=1341683994]
 position = Vector2(517, 613)
 shape = SubResource("RectangleShape2D_0q20k")
 
-[node name="TextureRect" type="Polygon2D" parent="Bottom" unique_id=403423056]
+[node name="TextureRect" type="Polygon2D" parent="Bottom/CollisionShape2D" unique_id=78029285]
+position = Vector2(379, 64)
 color = Color(0.9098039, 0.17254902, 0.1764706, 1)
-polygon = PackedVector2Array(-35, -231, -458, -231, -456, 644, -37, 646)
+polygon = PackedVector2Array(596, -346, -1354, -347, -1354, 219, 595, 219)
 
 [node name="Top" type="StaticBody2D" parent="." unique_id=1289087498]
-position = Vector2(28, -767)
+position = Vector2(27, -645)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Top" unique_id=703988894]
-position = Vector2(517, 613)
+position = Vector2(541.5, 376.625)
 shape = SubResource("RectangleShape2D_0q20k")
 
-[node name="TextureRect" type="Polygon2D" parent="Top/CollisionShape2D" unique_id=78029285]
-position = Vector2(400, 885)
+[node name="TextureRect" type="Polygon2D" parent="Top/CollisionShape2D" unique_id=1373152088]
+position = Vector2(652.5, 266.375)
 color = Color(0.9098039, 0.17254902, 0.1764706, 1)
-polygon = PackedVector2Array(326, -110, -1042, -104, -1044, 17, 326, 17)
+polygon = PackedVector2Array(322, -549, -1625, -547, -1631, 15, 326, 17)
 
 [node name="Left" type="StaticBody2D" parent="." unique_id=1997921586]
 position = Vector2(51, 2)
@@ -56,8 +60,8 @@ position = Vector2(51, 2)
 position = Vector2(-248, 259.5)
 shape = SubResource("RectangleShape2D_lrsw3")
 
-[node name="TextureRect" type="Polygon2D" parent="Left" unique_id=841278320]
-position = Vector2(1538, 41)
+[node name="TextureRect" type="Polygon2D" parent="Left" unique_id=403423056]
+position = Vector2(-2, 52)
 color = Color(0.9098039, 0.17254902, 0.1764706, 1)
 polygon = PackedVector2Array(-35, -231, -458, -231, -456, 644, -37, 646)
 
@@ -68,17 +72,17 @@ position = Vector2(1590, -11)
 position = Vector2(-248, 259.5)
 shape = SubResource("RectangleShape2D_lrsw3")
 
-[node name="TextureRect" type="Polygon2D" parent="Right" unique_id=1373152088]
-position = Vector2(-684, -111)
+[node name="TextureRect2" type="Polygon2D" parent="Right" unique_id=841278320]
+position = Vector2(-1, 54)
 color = Color(0.9098039, 0.17254902, 0.1764706, 1)
-polygon = PackedVector2Array(326, -110, -1042, -104, -1044, 17, 326, 17)
+polygon = PackedVector2Array(-35, -231, -458, -231, -456, 644, -37, 646)
 
 [node name="DragController" type="Node2D" parent="." unique_id=985302218]
 script = ExtResource("2_l2v5r")
 
 [node name="SpawnController" type="Node2D" parent="." unique_id=548106869 node_paths=PackedStringArray("parent_body", "drag_controller")]
 script = ExtResource("2_kapho")
-limb_scenes = Array[PackedScene]([ExtResource("1_0q20k"), ExtResource("3_lrsw3"), ExtResource("5_lrsw3"), ExtResource("6_lrsw3"), ExtResource("7_sdn56"), ExtResource("8_e4wf8")])
+limb_scenes = Array[PackedScene]([ExtResource("1_0q20k"), ExtResource("3_lrsw3"), ExtResource("19_sh4ki"), ExtResource("5_lrsw3"), ExtResource("6_lrsw3"), ExtResource("7_sdn56"), ExtResource("8_e4wf8"), ExtResource("18_wt3gg"), ExtResource("11_evkmt")])
 parent_body = NodePath("../BasePart")
 drag_controller = NodePath("../DragController")
 
@@ -88,10 +92,9 @@ spawn_controller = NodePath("..")
 drag_reload_factor = 0.4
 
 [node name="BasePart" parent="." unique_id=1069959148 instance=ExtResource("1_0q20k")]
-visible = false
 position = Vector2(353, 154)
 
 [node name="EnemyController" type="Node2D" parent="." unique_id=1925228961]
-position = Vector2(935, 475)
+position = Vector2(936, 497)
 script = ExtResource("10_n27oi")
 enemies = Array[PackedScene]([ExtResource("11_uof3y"), ExtResource("11_kdm3m"), ExtResource("13_6lsvn"), ExtResource("14_avv8j"), ExtResource("15_i7okk"), ExtResource("16_xko0f"), ExtResource("17_wt3gg")])

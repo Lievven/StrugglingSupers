@@ -28,6 +28,10 @@ signal start_battle
 signal debug_spawn
 
 
+func _ready() -> void:
+	time_display.text = "Time : " + str(remaining_time) + "s"
+
+
 func _process(delta: float) -> void:
 	advance_timer(delta)
 
@@ -54,7 +58,8 @@ func damage_player(amount: int):
 		return
 	player_hp -= amount
 	set_player_hp(player_hp)
-	
+
+
 func damage_enemy(amount: int):
 	if game_paused:
 		return
@@ -98,13 +103,15 @@ func set_enemy_hp(amount: int):
 
 func set_inventory_visibility(is_visible):
 	$Inventory.visible = is_visible
-	$StartButton.visible = is_visible
+	$ControlButtons.visible = is_visible
 
 
 func reset_level():
 	remaining_time = level_time
 	set_player_hp(100)
 	set_enemy_hp(100)
+	remaining_time = level_time
+	time_display.text = "Time : " + str(remaining_time) + "s"
 	enemy_controller.reset_level(won)
 	$Inventory.reset_level()
 	set_inventory_visibility(true)
@@ -112,6 +119,7 @@ func reset_level():
 
 
 func reset_game():
+	game_playing = true
 	enemy_controller.reset_game()
 	reset_level()
 	lives = default_lives

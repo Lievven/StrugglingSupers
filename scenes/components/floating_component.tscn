@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://brxbd6bkkqt8p"]
+
+[ext_resource type="Script" uid="uid://bli42nytsr7eu" path="res://scripts/floating_component.gd" id="1_g81lq"]
+
+[node name="FloatingComponent" type="Node2D" unique_id=1562462942]
+script = ExtResource("1_g81lq")
+maximum_weight = 4.0
+rise_time = 3.0
+lower_time = 3.0

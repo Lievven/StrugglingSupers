@@ -2,9 +2,25 @@
 
 [ext_resource type="Script" uid="uid://brcnvamxtpirw" path="res://scripts/drag_springs.gd" id="1_7ujbg"]
 [ext_resource type="Texture2D" uid="uid://bbbughheh03i2" path="res://assets/joint.png" id="2_7ujbg"]
+[ext_resource type="Texture2D" uid="uid://pd87joa3eswu" path="res://assets/joint_2.png" id="3_fqlfi"]
+[ext_resource type="Script" uid="uid://c0f53s028ni0j" path="res://scenes/components/animated_component.gd" id="4_qaons"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tjfb1"]
 radius = 13.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wr7lj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_7ujbg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_fqlfi")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=1686936239]
 z_index = 10
@@ -14,6 +30,7 @@ input_pickable = true
 script = ExtResource("1_7ujbg")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2114061428]
+visible = false
 position = Vector2(0, 24.5)
 texture = ExtResource("2_7ujbg")
 
@@ -43,5 +60,12 @@ node_b = NodePath("..")
 length = 40.0
 rest_length = 35.0
 stiffness = 64.0
+
+[node name="AnimatedComponent" type="AnimatedSprite2D" parent="." unique_id=462940269]
+position = Vector2(0, 25)
+sprite_frames = SubResource("SpriteFrames_wr7lj")
+frame_progress = 0.30258915
+script = ExtResource("4_qaons")
+metadata/_custom_type_script = "uid://c0f53s028ni0j"
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]

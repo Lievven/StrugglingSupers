@@ -2,6 +2,22 @@
 
 [ext_resource type="Script" uid="uid://dhwrv6bnbx2uq" path="res://scripts/base_part.gd" id="1_6myfq"]
 [ext_resource type="Texture2D" uid="uid://xsxny1wx678o" path="res://assets/upper_arm_1.png" id="2_6myfq"]
+[ext_resource type="Texture2D" uid="uid://bvx4n78f3o1mt" path="res://assets/upper_arm_2.png" id="3_qjcdj"]
+[ext_resource type="Script" uid="uid://c0f53s028ni0j" path="res://scenes/components/animated_component.gd" id="4_xfh3h"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_16p07"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_6myfq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_qjcdj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6myfq"]
 radius = 12.0
@@ -13,7 +29,15 @@ collision_layer = 4
 input_pickable = true
 script = ExtResource("1_6myfq")
 
+[node name="AnimatedComponent" type="AnimatedSprite2D" parent="." unique_id=181895882]
+rotation = -0.08985366
+sprite_frames = SubResource("SpriteFrames_16p07")
+frame_progress = 0.3834236
+script = ExtResource("4_xfh3h")
+metadata/_custom_type_script = "uid://c0f53s028ni0j"
+
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=411443742]
+visible = false
 rotation = -0.104185805
 texture = ExtResource("2_6myfq")
 

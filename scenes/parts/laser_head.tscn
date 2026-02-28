@@ -3,10 +3,26 @@
 [ext_resource type="PackedScene" uid="uid://b8vwwp55x6wv7" path="res://scenes/components/drag_springs.tscn" id="1_l21d0"]
 [ext_resource type="Texture2D" uid="uid://dr86o6srpabs0" path="res://assets/head_1.png" id="2_poi2y"]
 [ext_resource type="PackedScene" uid="uid://dc3pa21cnhrfw" path="res://scenes/components/projectile_emitter.tscn" id="3_5n702"]
+[ext_resource type="Texture2D" uid="uid://dnbtl3esoi5mk" path="res://assets/head_2.png" id="4_on7re"]
+[ext_resource type="Script" uid="uid://c0f53s028ni0j" path="res://scenes/components/animated_component.gd" id="5_3ncgp"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_poi2y"]
 radius = 17.0
 height = 58.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y7b1s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_poi2y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_on7re")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="CharacterBody2D" unique_id=1686936239 node_paths=PackedStringArray("attached_target") instance=ExtResource("1_l21d0")]
 attached_target = NodePath("RigidBody2D")
@@ -17,6 +33,7 @@ position = Vector2(0, 12)
 collision_layer = 512
 
 [node name="Sprite2D" type="Sprite2D" parent="RigidBody2D" index="0" unique_id=352156634]
+visible = false
 position = Vector2(0, -46)
 texture = ExtResource("2_poi2y")
 
@@ -31,3 +48,9 @@ position = Vector2(7, -52)
 position = Vector2(-10, -51)
 rotation = 3.1415927
 scale = Vector2(0.99999994, 0.99999994)
+
+[node name="AnimatedComponent" type="AnimatedSprite2D" parent="RigidBody2D" index="4" unique_id=1502625850]
+position = Vector2(1, -46)
+sprite_frames = SubResource("SpriteFrames_y7b1s")
+script = ExtResource("5_3ncgp")
+metadata/_custom_type_script = "uid://c0f53s028ni0j"

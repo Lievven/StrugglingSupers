@@ -2,11 +2,27 @@
 
 [ext_resource type="PackedScene" uid="uid://cq522q5rssv3t" path="res://scenes/components/drag_joint.tscn" id="1_xqjke"]
 [ext_resource type="Texture2D" uid="uid://3ypl8lj71qmc" path="res://assets/leg_1.png" id="2_5u4nb"]
-[ext_resource type="PackedScene" uid="uid://c6sa0f6mivt3p" path="res://scenes/parts/angular_component.tscn" id="3_xqjke"]
+[ext_resource type="Texture2D" uid="uid://brf4i0u5v84gv" path="res://assets/leg_2.png" id="3_soy8u"]
+[ext_resource type="PackedScene" uid="uid://c6sa0f6mivt3p" path="res://scenes/components/angular_component.tscn" id="3_xqjke"]
+[ext_resource type="Script" uid="uid://c0f53s028ni0j" path="res://scenes/components/animated_component.gd" id="4_5u4nb"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xqjke"]
 friction = 10.0
 rough = true
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2cr2i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_5u4nb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_soy8u")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8v1c3"]
 height = 74.0
@@ -24,12 +40,19 @@ physics_material_override = SubResource("PhysicsMaterial_xqjke")
 angular_damp = 7.0
 
 [node name="Sprite2D" type="Sprite2D" parent="RigidBody2D" index="0" unique_id=562422721]
+visible = false
 position = Vector2(0, -67)
 texture = ExtResource("2_5u4nb")
 
-[node name="CollisionPolygon2D" type="CollisionShape2D" parent="RigidBody2D" index="1" unique_id=481474648]
+[node name="AnimatedComponent" type="AnimatedSprite2D" parent="RigidBody2D" index="1" unique_id=1848337045]
+position = Vector2(0, -67)
+sprite_frames = SubResource("SpriteFrames_2cr2i")
+script = ExtResource("4_5u4nb")
+metadata/_custom_type_script = "uid://c0f53s028ni0j"
+
+[node name="CollisionPolygon2D" type="CollisionShape2D" parent="RigidBody2D" index="2" unique_id=481474648]
 position = Vector2(1, -66)
 shape = SubResource("CapsuleShape2D_8v1c3")
 
-[node name="AngularComponent" parent="RigidBody2D" index="2" unique_id=352158798 node_paths=PackedStringArray("angular_parent") instance=ExtResource("3_xqjke")]
+[node name="AngularComponent" parent="RigidBody2D" index="3" unique_id=352158798 node_paths=PackedStringArray("angular_parent") instance=ExtResource("3_xqjke")]
 angular_parent = NodePath("../..")

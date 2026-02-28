@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://cvudfjgrdkhy7"]
+
+[ext_resource type="PackedScene" uid="uid://cq522q5rssv3t" path="res://scenes/components/drag_joint.tscn" id="1_geagu"]
+[ext_resource type="PackedScene" uid="uid://xvt44y57romm" path="res://scenes/parts/base_limb.tscn" id="2_jgufi"]
+[ext_resource type="Script" uid="uid://c1vh71ryaf072" path="res://scenes/parts/shield_part.gd" id="3_8vq2x"]
+[ext_resource type="Texture2D" uid="uid://rcvservx5ugb" path="res://assets/saw_holder_1.png" id="4_1ffrh"]
+[ext_resource type="Texture2D" uid="uid://b0dbkqor16ss3" path="res://assets/shield_arm_1.png" id="4_168ji"]
+[ext_resource type="Script" uid="uid://c0f53s028ni0j" path="res://scenes/components/animated_component.gd" id="5_buph8"]
+[ext_resource type="Texture2D" uid="uid://bpxqecuvtcbou" path="res://assets/shield_arm_2.png" id="5_geagu"]
+[ext_resource type="PackedScene" uid="uid://cmp7nfoakbf16" path="res://scenes/components/aiming_component.tscn" id="8_geagu"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1qws5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_168ji")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_geagu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="DragJoint" unique_id=518220694 instance=ExtResource("1_geagu")]
+node_b = NodePath("BaseLimb")
+physics_force = 5000.0
+
+[node name="BaseLimb" parent="." index="1" unique_id=923943070 instance=ExtResource("2_jgufi")]
+position = Vector2(-1, 22)
+mass = 0.5
+
+[node name="RigidBody2D" type="RigidBody2D" parent="BaseLimb" index="2" unique_id=1447447988]
+position = Vector2(9, 28)
+collision_layer = 256
+collision_mask = 257
+mass = 0.4
+script = ExtResource("3_8vq2x")
+
+[node name="AnimatedComponent" type="AnimatedSprite2D" parent="BaseLimb/RigidBody2D" index="0" unique_id=1759020659]
+sprite_frames = SubResource("SpriteFrames_1qws5")
+frame_progress = 0.21295922
+script = ExtResource("5_buph8")
+metadata/_custom_type_script = "uid://c0f53s028ni0j"
+
+[node name="Sprite2D" type="Sprite2D" parent="BaseLimb/RigidBody2D" index="1" unique_id=573944840]
+visible = false
+texture = ExtResource("4_1ffrh")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BaseLimb/RigidBody2D" index="2" unique_id=267613300]
+polygon = PackedVector2Array(-6, -34, 1, -32, 8, -22, 11, -12, 13, 2, 11, 16, 3, 30, -3, 35, -8, 32, -8, 10, -8, -28)
+
+[node name="AimingComponent" parent="BaseLimb/RigidBody2D" index="3" unique_id=836022233 node_paths=PackedStringArray("aiming_part", "joint") instance=ExtResource("8_geagu")]
+rotation = 0.0
+aiming_part = NodePath("..")
+joint = NodePath("../../..")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="BaseLimb" index="3" unique_id=1986436237]
+position = Vector2(-1, 27)
+node_a = NodePath("..")
+node_b = NodePath("../RigidBody2D")

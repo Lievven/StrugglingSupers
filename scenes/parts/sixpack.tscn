@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://crg5oieqlw4kg"]
+
+[ext_resource type="PackedScene" uid="uid://b8vwwp55x6wv7" path="res://scenes/components/drag_springs.tscn" id="1_ejqm2"]
+[ext_resource type="Texture2D" uid="uid://dr86o6srpabs0" path="res://assets/head_1.png" id="2_bixqa"]
+[ext_resource type="Texture2D" uid="uid://djedh4honmuuo" path="res://assets/sixpack_1.png" id="4_ejqm2"]
+[ext_resource type="Texture2D" uid="uid://biaq50gn32oc5" path="res://assets/sixpack_2.png" id="5_bixqa"]
+[ext_resource type="PackedScene" uid="uid://4ttnypcae4gd" path="res://scenes/parts/hp_buff_component.tscn" id="6_ejqm2"]
+[ext_resource type="Script" uid="uid://c0f53s028ni0j" path="res://scenes/components/animated_component.gd" id="6_gu57r"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ejqm2"]
+radius = 16.03122
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rjlif"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_ejqm2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_bixqa")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="CharacterBody2D" unique_id=1686936239 node_paths=PackedStringArray("attached_target") instance=ExtResource("1_ejqm2")]
+attached_target = NodePath("RigidBody2D")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="." index="5" unique_id=49937301]
+z_index = -1
+position = Vector2(0, 12)
+collision_layer = 512
+mass = 0.1
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D" index="0" unique_id=352156634]
+visible = false
+position = Vector2(0, -46)
+texture = ExtResource("2_bixqa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D" index="1" unique_id=2006964656]
+position = Vector2(0, -46)
+shape = SubResource("CircleShape2D_ejqm2")
+
+[node name="AnimatedComponent" type="AnimatedSprite2D" parent="RigidBody2D" index="2" unique_id=1132863121]
+position = Vector2(2, -47)
+sprite_frames = SubResource("SpriteFrames_rjlif")
+script = ExtResource("6_gu57r")
+metadata/_custom_type_script = "uid://c0f53s028ni0j"
+
+[node name="HpBuffComponent" parent="." index="7" unique_id=1841526219 instance=ExtResource("6_ejqm2")]

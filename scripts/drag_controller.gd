@@ -5,6 +5,7 @@ class_name DragController
 @export var springs: Array[DragSpring] = []
 
 var draggable = null
+var pickup_spot = null
 
 func _ready():
 	for p in parts:
@@ -32,8 +33,11 @@ func _unhandled_input(event):
 	and not event.pressed \
 	and event.button_index == MOUSE_BUTTON_LEFT \
 	and draggable:
+		if main_ui.inventory.get_global_rect().has_point(event.position):
+			draggable.drag_part(pickup_spot)
+			if draggable.attached_button:
+				draggable.attached_button._on_pressed()
 		draggable = null
-		return
 
 
 func _on_part_input_event(event, shape):
@@ -42,5 +46,9 @@ func _on_part_input_event(event, shape):
 		
 	if event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
+			set_draggable(shape)
+
+
+func set_draggable(shape):
 			draggable = shape
-	
+			pickup_spot = draggable.position

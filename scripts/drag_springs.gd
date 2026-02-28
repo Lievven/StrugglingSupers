@@ -7,7 +7,6 @@ signal drag_and_drop
 @export var attached_target: RigidBody2D
 var on_handle = true
 
-
 var attached_button: PartButton = null
 
 func drag_part(pos: Vector2):
@@ -28,7 +27,7 @@ func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 
 func swap_target():
 	if on_handle:
-		$Sprite2D.visible = false
+		$AnimatedComponent.visible = false
 		$CollisionShape2D.disabled = true
 		$Spring1.node_b = base_target.get_path()
 		$Spring2.node_b = base_target.get_path()
